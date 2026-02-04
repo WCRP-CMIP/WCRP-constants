@@ -1,8 +1,8 @@
 {
     "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-universe/arrangement/",
-        "@base": "https://universal.mipcvs.dev/arrangement/",
+        "@alt_base": "https://git@github.com:wcrp-cmip.github.io/WCRP-constants/arrangement/",
+        "@base": "https://constants.mipcvs.dev/arrangement/",
         "@esgvoc": "Arrangement",
-        "@vocab": "https://universal.mipcvs.dev/docs/contents/Arrangement/"
+        "@vocab": "https://constants.mipcvs.dev/docs/contents/Arrangement/"
     }
 }
