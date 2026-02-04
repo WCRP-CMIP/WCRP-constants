@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "@alt_base": "https://git@github.com:wcrp-cmip.github.io/WCRP-constants/source_type/",
+        "@base": "https://constants.mipcvs.dev/source_type/",
+        "@esgvoc": "SourceType",
+        "@vocab": "https://constants.mipcvs.dev/docs/contents/SourceType/"
+    }
+}
