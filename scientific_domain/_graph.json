@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/scientific_domain/",
+    "@base": "https://constants.mipcvs.dev/scientific_domain/",
+    "@esgvoc": "ScientificDomain",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/ScientificDomain/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "land-ice"},
+    {"@id": "sea-ice"},
+    {"@id": "atmosphere"},
+    {"@id": "atmospheric-chemistry"},
+    {"@id": "aerosol"},
+    {"@id": "ocean-biogeochemistry"},
+    {"@id": "land-surface"},
+    {"@id": "ocean"}
+  ]
+}

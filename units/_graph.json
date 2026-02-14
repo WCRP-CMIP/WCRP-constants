@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/units/",
+    "@base": "https://constants.mipcvs.dev/units/",
+    "@esgvoc": "Units",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Units/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "degree"},
+    {"@id": "meter"},
+    {"@id": "km"},
+    {"@id": "k"},
+    {"@id": "pa"}
+  ]
+}

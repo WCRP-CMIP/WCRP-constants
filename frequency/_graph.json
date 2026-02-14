@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/frequency/",
+    "@base": "https://constants.mipcvs.dev/frequency/",
+    "@esgvoc": "Frequency",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Frequency/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "3hr"},
+    {"@id": "mon"},
+    {"@id": "subhrpt"},
+    {"@id": "6hr"},
+    {"@id": "6hrpt"},
+    {"@id": "1hrcm"},
+    {"@id": "yrpt"},
+    {"@id": "1hrpt"},
+    {"@id": "3hrpt"},
+    {"@id": "yr"},
+    {"@id": "dec"},
+    {"@id": "1hr"},
+    {"@id": "day"},
+    {"@id": "fx"},
+    {"@id": "monpt"},
+    {"@id": "monc"}
+  ]
+}

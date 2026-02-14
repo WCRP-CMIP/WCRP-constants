@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/activity/",
+    "@base": "https://constants.mipcvs.dev/activity/",
+    "@esgvoc": "Activity",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Activity/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "tipmip"},
+    {"@id": "aera-mip"},
+    {"@id": "rfmip"},
+    {"@id": "cordex"},
+    {"@id": "c4mip"},
+    {"@id": "sofiamip"},
+    {"@id": "cdrmip"},
+    {"@id": "lesfmip"},
+    {"@id": "lumip"},
+    {"@id": "volmip"},
+    {"@id": "lmip"},
+    {"@id": "ismip7"},
+    {"@id": "firemip"},
+    {"@id": "highresmip"},
+    {"@id": "ramip"},
+    {"@id": "ramip "},
+    {"@id": "omip"},
+    {"@id": "tbimip"},
+    {"@id": "aerchemmip2"},
+    {"@id": "misomip2"},
+    {"@id": "simip"},
+    {"@id": "aerchemmip"},
+    {"@id": "nahosmip"},
+    {"@id": "cmip"},
+    {"@id": "cfmip"},
+    {"@id": "pmip"},
+    {"@id": "longrunmip"},
+    {"@id": "whatifmip"},
+    {"@id": "none"},
+    {"@id": "methanemip"},
+    {"@id": "dcpp"},
+    {"@id": "scenariomip"},
+    {"@id": "sp-mip"},
+    {"@id": "ceresmip"},
+    {"@id": "mumip"},
+    {"@id": "irrmip"},
+    {"@id": "ppemip"},
+    {"@id": "geomip"},
+    {"@id": "fishmip"},
+    {"@id": "damip"}
+  ]
+}

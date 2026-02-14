@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/region/",
+    "@base": "https://constants.mipcvs.dev/region/",
+    "@esgvoc": "Region",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Region/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "northern-hemisphere"},
+    {"@id": "30s-90s"},
+    {"@id": "tropics"},
+    {"@id": "greenland"},
+    {"@id": "antarctica"},
+    {"@id": "shem"},
+    {"@id": "southern-hemisphere"},
+    {"@id": "arctic"},
+    {"@id": "global"},
+    {"@id": "limited-area"}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/arrangement/",
+    "@base": "https://constants.mipcvs.dev/arrangement/",
+    "@esgvoc": "Arrangement",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Arrangement/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "arakawa-c"},
+    {"@id": "arakawa-e"},
+    {"@id": "arakawa-b"},
+    {"@id": "arakawa-a"},
+    {"@id": "arakawa-d"}
+  ]
+}
