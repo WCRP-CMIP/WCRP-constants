@@ -33,8 +33,3 @@ enable_github_pages: True
 
 pages_branch: production
 
-
-# Documentation
-has_mkdocs: False
-
-
