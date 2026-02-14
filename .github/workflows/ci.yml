@@ -1,10 +1,15 @@
 name: ⚇ CI
+<<<<<<< HEAD
 description: Continuous Integration - validation and checks
+=======
+# description is not a valid workflow key - remove it
+>>>>>>> fabd696 (Initial commit)
 
 permissions:
   contents: write
   pages: write
   actions: write
+<<<<<<< HEAD
 
 on:
   schedule:
@@ -22,10 +27,30 @@ jobs:
   check_graphs:
     runs-on: ubuntu-latest
     steps:
+=======
+  id-token: write
+
+on:
+  schedule:
+    - cron: "1 1 * * 6"
+  workflow_dispatch:
+
+jobs:
+  links:
+    uses: WCRP-CMIP/CMIPLD/.github/workflows/linkcheck.yml@main
+
+  validate-fix-json:
+    uses: WCRP-CMIP/CMIPLD/.github/workflows/validate_json.yml@main
+
+  check-graph:
+    runs-on: ubuntu-latest  # Added: required for jobs
+    steps:  # Added: steps must be under a steps key
+>>>>>>> fabd696 (Initial commit)
       - name: Checkout production branch
         uses: actions/checkout@v4
         with:
           ref: production
+<<<<<<< HEAD
           fetch-depth: 1
 
       - name: Check for graphs
@@ -45,3 +70,23 @@ jobs:
             fi
           done
 
+=======
+          fetch-depth: 0  # Fixed: was incomplete
+      
+      - name: has a graph been built?
+        id: check_graph
+        run: |
+          {
+            for dir in */; do
+              if [ -f "${dir}_context" ]; then
+                echo "#### $dir"
+                if [ -f "${dir}graph.jsonld" ]; then
+                  echo "- graph.jsonld: ✅ present"
+                else
+                  echo "- graph.jsonld: ❌ missing"
+                fi
+                echo
+              fi
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+>>>>>>> fabd696 (Initial commit)

@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 name: ↻ Sync Workflows
 description: Sync shared workflows and files from main to other branches
 
 permissions:
   contents: write
+=======
+name: → workflows
+>>>>>>> fabd696 (Initial commit)
 
 on:
   push:
@@ -10,6 +14,7 @@ on:
       - main
     paths:
       - '.github/workflows/**'
+<<<<<<< HEAD
 
       - '.github/prepublish/**'
 
@@ -19,12 +24,23 @@ on:
 env:
   SYNC_FOLDERS: "workflows prepublish"
   SYNC_FILES: "CONTRIBUTING.md"
+=======
+      - '.github/prepublish/*'
+      - '.github/ISSUE_SCRIPT/**'
+      - '.github/*.md'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+>>>>>>> fabd696 (Initial commit)
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+<<<<<<< HEAD
         branch:
 
           - src-data
@@ -34,10 +50,19 @@ jobs:
     
     steps:
       - name: Checkout target branch
+=======
+        branch: 
+          - src-data
+          - docs
+    
+    steps:
+      - name: Checkout branch
+>>>>>>> fabd696 (Initial commit)
         uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0
+<<<<<<< HEAD
       
       - name: Fetch main branch
         run: git fetch origin main --depth=1
@@ -67,6 +92,34 @@ jobs:
           done
       
       - name: Commit and push changes
+=======
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Copy files from main
+        run: |
+          mkdir -p .github/workflows
+          mkdir -p .github/prepublish
+          mkdir -p .github/ISSUE_SCRIPT
+
+          # Ensure remote main is available (works in detached HEAD)
+          git fetch origin main --depth=1 || true
+
+          # Copy workflows directory from remote main if present
+          git checkout origin/main -- .github/workflows/ || true
+
+          # Copy prepublish directory from remote main if present
+          git checkout origin/main -- .github/prepublish/ || true
+
+          # Copy ISSUE_SCRIPT directory from remote main if present
+          git checkout origin/main -- .github/ISSUE_SCRIPT/ || true
+          
+          # Copy all .md files from .github
+          for f in $(git ls-tree --name-only origin/main .github/ | grep '\.md$'); do
+            git checkout origin/main -- "$f" || true
+          done
+      
+      - name: Commit and push
+>>>>>>> fabd696 (Initial commit)
         uses: EndBug/add-and-commit@v9
         with:
           add: '.github/'
