@@ -10,9 +10,6 @@ on:
   push:
     branches:
       - "docs"
-    paths:
-      - "docs/**"
-
   workflow_dispatch:
 
 jobs:
@@ -42,15 +39,56 @@ jobs:
         run: |
           git checkout production
 
-
-      - name: Copy docs from docs branch
+      - name: Copy documentation from docs branch
         run: |
-          echo "Restoring docs folder..."
-          rm -rf docs
-          git restore --source origin/docs --staged --worktree -- docs/ || true
+          echo "Copying documentation content from docs branch..."
+          git restore --source origin/docs --staged --worktree -- . || true
           
-          echo "✓ Copied docs from docs branch"
+          echo "✓ Documentation copied from docs branch"
 
+      - name: Build MkDocs site
+        continue-on-error: true
+        run: |
+          # Find mkdocs.yml - check common locations
+          MKDOCS_CONFIG=""
+          for config in "src/mkdocs/mkdocs.yml" "mkdocs.yml" "docs/mkdocs.yml"; do
+            if [ -f "$config" ]; then
+              MKDOCS_CONFIG="$config"
+              break
+            fi
+          done
+          
+          if [ -z "$MKDOCS_CONFIG" ]; then
+            echo "No mkdocs.yml found, skipping MkDocs build"
+            exit 0
+          fi
+          
+          echo "Building MkDocs site from $MKDOCS_CONFIG..."
+          
+          # Install Python
+          python -m pip install --upgrade pip
+          
+          # Find and install requirements
+          MKDOCS_DIR=$(dirname "$MKDOCS_CONFIG")
+          if [ -f "$MKDOCS_DIR/requirements.txt" ]; then
+            echo "Installing from $MKDOCS_DIR/requirements.txt..."
+            pip install -r "$MKDOCS_DIR/requirements.txt"
+          else
+            echo "Installing default MkDocs packages..."
+            pip install mkdocs mkdocs-material
+          fi
+          
+          # Build to temporary 'build' folder
+          rm -rf build
+          mkdocs build -f "$MKDOCS_CONFIG" -d build
+          
+          # Clean up source files and old docs
+          rm -rf src docs
+          
+          # Move built site to docs
+          mv build docs
+          
+          echo "✓ Built MkDocs site - docs/ now contains the built site"
 
       - name: Check for changes
         id: check_changes
@@ -63,6 +101,21 @@ jobs:
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "Documentation changes detected"
+            
+            # Generate summary of changes
+            echo "## 📚 Documentation Changes" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Count changes
+            ADDED=$(git diff --cached --name-only --diff-filter=A | wc -l)
+            MODIFIED=$(git diff --cached --name-only --diff-filter=M | wc -l)
+            DELETED=$(git diff --cached --name-only --diff-filter=D | wc -l)
+            
+            echo "| Type | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| ➕ Added | $ADDED |" >> $GITHUB_STEP_SUMMARY
+            echo "| ✏️ Modified | $MODIFIED |" >> $GITHUB_STEP_SUMMARY
+            echo "| 🗑️ Deleted | $DELETED |" >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Commit changes
