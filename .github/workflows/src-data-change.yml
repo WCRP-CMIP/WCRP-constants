@@ -76,17 +76,15 @@ jobs:
 
 
 
-
-      - name: Build documentation from docs branch
+      - name: Copy content from docs branch
         run: |
           echo "Fetching docs branch..."
           git fetch origin docs:docs
           
-          echo "Copying docs to production..."
-          rm -rf docs
-          git restore --source origin/docs --staged --worktree -- docs/ || true
+          echo "Copying content from docs branch to production..."
+          git restore --source origin/docs --staged --worktree -- . || true
           
-          echo "✓ Documentation updated"
+          echo "✓ Docs branch content copied to production"
 
 
 
