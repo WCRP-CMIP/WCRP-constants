@@ -1,0 +1,41 @@
+{
+    "validation_key": "CGI",
+    "ui_label": "Chockie Group International (United States)",
+    "description": "",
+    "acronyms": [
+        "CGI"
+    ],
+    "aliases": [],
+    "established": 1994,
+    "kind": "company",
+    "labels": [
+        "Chockie Group International (United States)"
+    ],
+    "location": [
+        {
+            "continent_code": "NA",
+            "continent_name": "North America",
+            "country_code": "US",
+            "country_name": "United States",
+            "country_subdivision_code": "WA",
+            "country_subdivision_name": "Washington",
+            "lat": 47.81065,
+            "lng": -122.37736,
+            "name": "Edmonds",
+            "@type": "wcrp:location",
+            "@id": "universal:location/00804ej42"
+        }
+    ],
+    "ror": "00804ej42",
+    "url": [
+        "http://www.chockiegroup.com/Home.html"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "cgi"
+}

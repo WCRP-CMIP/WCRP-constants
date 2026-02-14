@@ -1,0 +1,39 @@
+{
+    "validation_key": "TWP",
+    "ui_label": "Herzog + Partner (Germany)",
+    "description": "",
+    "acronyms": [],
+    "aliases": [],
+    "established": null,
+    "kind": "company",
+    "labels": [
+        "Herzog + Partner (Germany)"
+    ],
+    "location": [
+        {
+            "continent_code": "EU",
+            "continent_name": "Europe",
+            "country_code": "DE",
+            "country_name": "Germany",
+            "country_subdivision_code": "BW",
+            "country_subdivision_name": "Baden-Wurttemberg",
+            "lat": 49.4891,
+            "lng": 8.46694,
+            "name": "Mannheim",
+            "@type": "wcrp:location",
+            "@id": "universal:location/02ratyz17"
+        }
+    ],
+    "ror": "02ratyz17",
+    "url": [
+        "https://www.herzogundpartner.de/"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "twp"
+}

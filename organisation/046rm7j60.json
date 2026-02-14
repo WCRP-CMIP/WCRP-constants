@@ -1,0 +1,49 @@
+{
+    "validation_key": "UCLA",
+    "ui_label": "University of California, Los Angeles",
+    "description": "",
+    "acronyms": [
+        "UCLA"
+    ],
+    "aliases": [
+        "State Normal School at Los Angeles",
+        "UC Los Angeles",
+        "University of California Southern Branch",
+        "University of California at Los Angeles"
+    ],
+    "established": 1919,
+    "kind": "education",
+    "labels": [
+        "Universidad de California en Los Ángeles",
+        "University of California, Los Angeles",
+        "Université de Californie à Los Angeles"
+    ],
+    "location": [
+        {
+            "continent_code": "NA",
+            "continent_name": "North America",
+            "country_code": "US",
+            "country_name": "United States",
+            "country_subdivision_code": "CA",
+            "country_subdivision_name": "California",
+            "lat": 34.05223,
+            "lng": -118.24368,
+            "name": "Los Angeles",
+            "@type": "wcrp:location",
+            "@id": "universal:location/046rm7j60"
+        }
+    ],
+    "ror": "046rm7j60",
+    "url": [
+        "https://www.ucla.edu",
+        "http://en.wikipedia.org/wiki/University_of_California,_Los_Angeles"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "ucla"
+}

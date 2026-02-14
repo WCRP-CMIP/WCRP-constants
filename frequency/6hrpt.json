@@ -1,0 +1,15 @@
+{
+    "validation_key": "6hrPt",
+    "ui_label": "6 Hour Point",
+    "description": "sampled 6 hourly, at specified time point within the time period",
+    "approx_interval": 0.25,
+    "unit": "hour",
+    "@context": "_context",
+    "@type": [
+        "wcrp:frequency",
+        "esgvoc:Frequency",
+        "universal",
+        "constants"
+    ],
+    "@id": "6hrpt"
+}
