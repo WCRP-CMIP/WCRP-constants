@@ -17,9 +17,6 @@ has_docs_branch: True
 # Workflow Features
 
 enable_graph_generation: True
-
-use_python_graphs: False
-
 enable_prepublish_scripts: True
 
 enable_issue_templates: True
@@ -39,4 +36,5 @@ pages_branch: production
 
 # Documentation
 has_mkdocs: False
+
 
