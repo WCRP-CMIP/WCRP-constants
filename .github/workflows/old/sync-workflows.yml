@@ -1,4 +1,4 @@
-name: ↻ Sync Workflows
+name: → Sync Workflows
 description: Sync shared workflows and files from main to other branches
 
 permissions:
@@ -10,27 +10,29 @@ on:
       - main
     paths:
       - '.github/workflows/**'
-
       - '.github/prepublish/**'
-
       - '.github/CONTRIBUTING.md'
   workflow_dispatch:
 
+# ============================================
+# CONFIGURATION
+# ============================================
 env:
+  # Folders to sync (space-separated, relative to .github/)
   SYNC_FOLDERS: "workflows prepublish"
+  
+  # Individual files to sync (space-separated, relative to .github/)
   SYNC_FILES: "CONTRIBUTING.md"
+  
+  # Branches to sync to (space-separated)
+  TARGET_BRANCHES: "src-data docs"
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch:
-
-          - src-data
-
-          - docs
-
+        branch: [src-data, docs]
     
     steps:
       - name: Checkout target branch
