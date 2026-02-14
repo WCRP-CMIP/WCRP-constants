@@ -6,7 +6,8 @@
     "@type": [
         "universal",
         "wcrp:region",
-        "esgvoc:Region"
+        "esgvoc:Region",
+        "constants"
     ],
     "@id": "limited-area"
 }

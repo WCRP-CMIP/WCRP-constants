@@ -7,7 +7,8 @@
     "@type": [
         "wcrp:archive_id",
         "esgvoc:ArchiveId",
-        "universal"
+        "universal",
+        "constants"
     ],
     "@id": "wcrp"
 }
