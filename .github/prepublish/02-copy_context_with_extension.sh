@@ -1,7 +1,15 @@
 #!/bin/bash
-find . -type f -name "_context" -print0 | while IFS= read -r -d '' file; do
-      cp "$file" "$file.json"
+# Copy _context files with .jsonld extension
+# Repository: WCRP-constants
+
+echo "Copying _context files with .jsonld extension..."
+
+find . -type f -name "_context" \
+  ! -path "*/.*" \
+  -print0 | while IFS= read -r -d '' file; do
+    dir=$(dirname "$file")
+    cp "$file" "$dir/_context.jsonld"
+    echo "  Copied: $file → $dir/_context.jsonld"
 done
 
-echo "Context files copied with .json extension."
-
+echo "✓ Context files copied"

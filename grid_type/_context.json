@@ -1,8 +1,0 @@
-{
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/grid_type/",
-        "@base": "https://constants.mipcvs.dev/grid_type/",
-        "@esgvoc": "GridType",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/GridType/"
-    }
-}
