@@ -1,5 +1,5 @@
 {
-    "validation_key": "NIMS",
+    "validation_key": "NIMS-KMA",
     "ui_label": "National Institute of Meteorological Sciences",
     "description": "",
     "acronyms": [
@@ -35,7 +35,8 @@
     "@type": [
         "wcrp:organisation",
         "esgvoc:Organisation",
-        "universal"
+        "universal",
+        "constants"
     ],
-    "@id": "nims"
+    "@id": "nims-kma"
 }

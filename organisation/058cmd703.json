@@ -1,5 +1,5 @@
 {
-    "validation_key": "PNNL-JGCRI",
+    "validation_key": "JGCRI",
     "ui_label": "Joint Global Change Research Institute",
     "description": "",
     "acronyms": [
@@ -7,28 +7,36 @@
     ],
     "aliases": [],
     "established": 2001,
-    "kind": "Facility",
-    "labels": [],
-    "location": {
-        "@id": "universal:location/058cmd703",
-        "@type": "esgf:location",
-        "lat": 38.96344,
-        "lon": -76.93164,
-        "city": "Riverdale Park",
-        "country": [
-            "United States",
-            "US"
-        ]
-    },
+    "kind": "facility",
+    "labels": [
+        "Joint Global Change Research Institute"
+    ],
+    "location": [
+        {
+            "continent_code": "NA",
+            "continent_name": "North America",
+            "country_code": "US",
+            "country_name": "United States",
+            "country_subdivision_code": "MD",
+            "country_subdivision_name": "Maryland",
+            "lat": 38.96344,
+            "lng": -76.93164,
+            "name": "Riverdale Park",
+            "@type": "wcrp:location",
+            "@id": "universal:location/058cmd703"
+        }
+    ],
     "ror": "058cmd703",
     "url": [
-        "https://www.pnnl.gov/projects/jgcri"
+        "https://www.pnnl.gov/projects/jgcri",
+        "https://en.wikipedia.org/wiki/Joint_Global_Change_Research_Institute"
     ],
     "@context": "_context",
     "@type": [
         "wcrp:organisation",
         "esgvoc:Organisation",
-        "universal"
+        "universal",
+        "constants"
     ],
-    "@id": "pnnl-jgcri"
+    "@id": "jgcri"
 }

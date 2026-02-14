@@ -1,6 +1,6 @@
 {
     "@context": {
-        "@alt_base": "https://git@github.com:wcrp-cmip.github.io/WCRP-constants/vertical_coordinate/",
+        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/vertical_coordinate/",
         "@base": "https://constants.mipcvs.dev/vertical_coordinate/",
         "@esgvoc": "VerticalCoordinate",
         "@vocab": "https://constants.mipcvs.dev/docs/contents/VerticalCoordinate/"

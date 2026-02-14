@@ -6,7 +6,8 @@
     "@type": [
         "universal",
         "wcrp:grid_mapping",
-        "esgvoc:GridMapping"
+        "esgvoc:GridMapping",
+        "constants"
     ],
     "@id": "albers-conical-equal-area"
 }

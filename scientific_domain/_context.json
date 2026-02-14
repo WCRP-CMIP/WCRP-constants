@@ -1,6 +1,6 @@
 {
     "@context": {
-        "@alt_base": "https://git@github.com:wcrp-cmip.github.io/WCRP-constants/scientific_domain/",
+        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/scientific_domain/",
         "@base": "https://constants.mipcvs.dev/scientific_domain/",
         "@esgvoc": "ScientificDomain",
         "@vocab": "https://constants.mipcvs.dev/docs/contents/ScientificDomain/"

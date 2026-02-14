@@ -6,7 +6,8 @@
     "@type": [
         "universal",
         "wcrp:vertical_coordinate",
-        "esgvoc:VerticalCoordinate"
+        "esgvoc:VerticalCoordinate",
+        "constants"
     ],
     "@id": "ocean-double-sigma-coordinate"
 }
