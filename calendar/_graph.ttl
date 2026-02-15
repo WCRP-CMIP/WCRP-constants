@@ -1,0 +1,13 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/Calendar/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/calendar/360day>,
+        <https://constants.mipcvs.dev/calendar/365day>,
+        <https://constants.mipcvs.dev/calendar/366day>,
+        <https://constants.mipcvs.dev/calendar/julian>,
+        <https://constants.mipcvs.dev/calendar/none>,
+        <https://constants.mipcvs.dev/calendar/proleptic-gregorian>,
+        <https://constants.mipcvs.dev/calendar/standard>,
+        <https://constants.mipcvs.dev/calendar/tai>,
+        <https://constants.mipcvs.dev/calendar/utc> .
+

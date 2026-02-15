@@ -1,0 +1,7 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/TemporalRefinement/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/temporal_refinement/adaptive>,
+        <https://constants.mipcvs.dev/temporal_refinement/dynamically-stretched>,
+        <https://constants.mipcvs.dev/temporal_refinement/static> .
+

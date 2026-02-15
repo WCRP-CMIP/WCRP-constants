@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/grid_mapping/",
+    "@base": "https://constants.mipcvs.dev/grid_mapping/",
+    "@esgvoc": "GridMapping",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/GridMapping/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "albers-conical-equal-area"},
+    {"@id": "polar-stereographic"},
+    {"@id": "vertical-perspective"},
+    {"@id": "rotated-latitude-longitude"},
+    {"@id": "transverse-mercator"},
+    {"@id": "lambert-conformal-conic"},
+    {"@id": "azimuthal-equidistant"},
+    {"@id": "lambert-azimuthal-equal-area"},
+    {"@id": "healpix"},
+    {"@id": "lambert-cylindrical-equal-area"},
+    {"@id": "geostationary"},
+    {"@id": "mercator"},
+    {"@id": "latitude-longitude"},
+    {"@id": "sinusoidal"},
+    {"@id": "orthographic"},
+    {"@id": "stereographic"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+    "validation_key": "gridded_insitu",
+    "ui_label": "",
+    "description": "gridded product based on measurements collected from in-situ instruments",
+    "@context": "_context",
+    "@type": [
+        "wcrp:source_type",
+        "esgvoc:SourceType",
+        "universal",
+        "constants"
+    ],
+    "@id": "gridded-insitu"
+}

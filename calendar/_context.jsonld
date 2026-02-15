@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/calendar/",
+        "@base": "https://constants.mipcvs.dev/calendar/",
+        "@esgvoc": "Calendar",
+        "@vocab": "https://constants.mipcvs.dev/docs/contents/Calendar/"
+    }
+}

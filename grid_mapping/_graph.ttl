@@ -1,0 +1,20 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/GridMapping/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/grid_mapping/albers-conical-equal-area>,
+        <https://constants.mipcvs.dev/grid_mapping/azimuthal-equidistant>,
+        <https://constants.mipcvs.dev/grid_mapping/geostationary>,
+        <https://constants.mipcvs.dev/grid_mapping/healpix>,
+        <https://constants.mipcvs.dev/grid_mapping/lambert-azimuthal-equal-area>,
+        <https://constants.mipcvs.dev/grid_mapping/lambert-conformal-conic>,
+        <https://constants.mipcvs.dev/grid_mapping/lambert-cylindrical-equal-area>,
+        <https://constants.mipcvs.dev/grid_mapping/latitude-longitude>,
+        <https://constants.mipcvs.dev/grid_mapping/mercator>,
+        <https://constants.mipcvs.dev/grid_mapping/orthographic>,
+        <https://constants.mipcvs.dev/grid_mapping/polar-stereographic>,
+        <https://constants.mipcvs.dev/grid_mapping/rotated-latitude-longitude>,
+        <https://constants.mipcvs.dev/grid_mapping/sinusoidal>,
+        <https://constants.mipcvs.dev/grid_mapping/stereographic>,
+        <https://constants.mipcvs.dev/grid_mapping/transverse-mercator>,
+        <https://constants.mipcvs.dev/grid_mapping/vertical-perspective> .
+

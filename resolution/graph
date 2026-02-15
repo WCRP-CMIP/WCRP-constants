@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/resolution/",
+    "@base": "https://constants.mipcvs.dev/resolution/",
+    "@esgvoc": "Resolution",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Resolution/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "500km"},
+    {"@id": "2500km"},
+    {"@id": "2.5km"},
+    {"@id": "100km"},
+    {"@id": "5000km"},
+    {"@id": "1x1degree"},
+    {"@id": "0.5km"},
+    {"@id": "1km"},
+    {"@id": "10000km"},
+    {"@id": "25km"},
+    {"@id": "1000km"},
+    {"@id": "50km"},
+    {"@id": "5km"},
+    {"@id": "10km"},
+    {"@id": "250km"}
+  ]
+}

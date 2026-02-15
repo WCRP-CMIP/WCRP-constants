@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/grid_type/",
+    "@base": "https://constants.mipcvs.dev/grid_type/",
+    "@esgvoc": "GridType",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/GridType/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "unstructured-polygonal"},
+    {"@id": "quadratic-spectral-gaussian"},
+    {"@id": "unstructured"},
+    {"@id": "hierarchical-discrete-global-grid"},
+    {"@id": "rotated-pole"},
+    {"@id": "displaced-pole"},
+    {"@id": "regular-gaussian"},
+    {"@id": "spectral-reduced-gaussian"},
+    {"@id": "unstructured-quadrilateral"},
+    {"@id": "icosahedral-geodesic-dual"},
+    {"@id": "tripolar"},
+    {"@id": "cubic-octahedral-spectral-reduced-gaussian"},
+    {"@id": "icosahedral-geodesic"},
+    {"@id": "icosahedral"},
+    {"@id": "yin-yang"},
+    {"@id": "cubed-sphere"},
+    {"@id": "linear-spectral-gaussian"},
+    {"@id": "unstructured-triangular"},
+    {"@id": "reduced-gaussian"},
+    {"@id": "spectral-gaussian"},
+    {"@id": "stretched"},
+    {"@id": "regular-latitude-longitude"},
+    {"@id": "plane-projection"}
+  ]
+}

@@ -1,0 +1,27 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/GridType/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/grid_type/cubed-sphere>,
+        <https://constants.mipcvs.dev/grid_type/cubic-octahedral-spectral-reduced-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/displaced-pole>,
+        <https://constants.mipcvs.dev/grid_type/hierarchical-discrete-global-grid>,
+        <https://constants.mipcvs.dev/grid_type/icosahedral>,
+        <https://constants.mipcvs.dev/grid_type/icosahedral-geodesic>,
+        <https://constants.mipcvs.dev/grid_type/icosahedral-geodesic-dual>,
+        <https://constants.mipcvs.dev/grid_type/linear-spectral-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/plane-projection>,
+        <https://constants.mipcvs.dev/grid_type/quadratic-spectral-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/reduced-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/regular-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/regular-latitude-longitude>,
+        <https://constants.mipcvs.dev/grid_type/rotated-pole>,
+        <https://constants.mipcvs.dev/grid_type/spectral-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/spectral-reduced-gaussian>,
+        <https://constants.mipcvs.dev/grid_type/stretched>,
+        <https://constants.mipcvs.dev/grid_type/tripolar>,
+        <https://constants.mipcvs.dev/grid_type/unstructured>,
+        <https://constants.mipcvs.dev/grid_type/unstructured-polygonal>,
+        <https://constants.mipcvs.dev/grid_type/unstructured-quadrilateral>,
+        <https://constants.mipcvs.dev/grid_type/unstructured-triangular>,
+        <https://constants.mipcvs.dev/grid_type/yin-yang> .
+

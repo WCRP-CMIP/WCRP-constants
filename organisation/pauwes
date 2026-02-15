@@ -1,0 +1,43 @@
+{
+    "validation_key": "PAUWES",
+    "ui_label": "Pan African University Institute of Water and Energy Science",
+    "description": "",
+    "acronyms": [
+        "PAUWES"
+    ],
+    "aliases": [
+        "PAU Institute of Water and Energy Science"
+    ],
+    "established": 2014,
+    "kind": "education",
+    "labels": [
+        "Pan African University Institute of Water and Energy Science"
+    ],
+    "location": [
+        {
+            "continent_code": "AF",
+            "continent_name": "Africa",
+            "country_code": "DZ",
+            "country_name": "Algeria",
+            "country_subdivision_code": "13",
+            "country_subdivision_name": "Tlemcen",
+            "lat": 34.87833,
+            "lng": -1.315,
+            "name": "Tlemcen",
+            "@type": "wcrp:location",
+            "@id": "universal:location/04qe65e37"
+        }
+    ],
+    "ror": "04qe65e37",
+    "url": [
+        "https://pau-au.africa/institutes/pauwes"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "pauwes"
+}

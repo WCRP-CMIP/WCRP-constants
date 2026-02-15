@@ -1,0 +1,8 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/Product/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/product/derived>,
+        <https://constants.mipcvs.dev/product/forcing-dataset>,
+        <https://constants.mipcvs.dev/product/model-output>,
+        <https://constants.mipcvs.dev/product/observations> .
+

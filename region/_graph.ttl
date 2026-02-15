@@ -1,0 +1,14 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/Region/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/region/30s-90s>,
+        <https://constants.mipcvs.dev/region/antarctica>,
+        <https://constants.mipcvs.dev/region/arctic>,
+        <https://constants.mipcvs.dev/region/global>,
+        <https://constants.mipcvs.dev/region/greenland>,
+        <https://constants.mipcvs.dev/region/limited-area>,
+        <https://constants.mipcvs.dev/region/northern-hemisphere>,
+        <https://constants.mipcvs.dev/region/shem>,
+        <https://constants.mipcvs.dev/region/southern-hemisphere>,
+        <https://constants.mipcvs.dev/region/tropics> .
+

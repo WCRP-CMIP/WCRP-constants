@@ -1,0 +1,12 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/ScientificDomain/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/scientific_domain/aerosol>,
+        <https://constants.mipcvs.dev/scientific_domain/atmosphere>,
+        <https://constants.mipcvs.dev/scientific_domain/atmospheric-chemistry>,
+        <https://constants.mipcvs.dev/scientific_domain/land-ice>,
+        <https://constants.mipcvs.dev/scientific_domain/land-surface>,
+        <https://constants.mipcvs.dev/scientific_domain/ocean>,
+        <https://constants.mipcvs.dev/scientific_domain/ocean-biogeochemistry>,
+        <https://constants.mipcvs.dev/scientific_domain/sea-ice> .
+

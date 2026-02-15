@@ -1,0 +1,44 @@
+{
+    "validation_key": "ENS",
+    "ui_label": "École Normale Supérieure",
+    "description": "",
+    "acronyms": [
+        "ENS"
+    ],
+    "aliases": [
+        "ENS de Bujumbura",
+        "École Normale Supérieure de Bujumbura"
+    ],
+    "established": 1965,
+    "kind": "education",
+    "labels": [
+        "École Normale Supérieure"
+    ],
+    "location": [
+        {
+            "continent_code": "AF",
+            "continent_name": "Africa",
+            "country_code": "BI",
+            "country_name": "Burundi",
+            "country_subdivision_code": "BM",
+            "country_subdivision_name": "Bujumbura Mairie",
+            "lat": -3.38193,
+            "lng": 29.36142,
+            "name": "Bujumbura",
+            "@type": "wcrp:location",
+            "@id": "universal:location/01dp7jr64"
+        }
+    ],
+    "ror": "01dp7jr64",
+    "url": [
+        "https://ens.edu.bi"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "ens"
+}

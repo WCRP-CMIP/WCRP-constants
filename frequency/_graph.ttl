@@ -1,0 +1,20 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/Frequency/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/frequency/1hr>,
+        <https://constants.mipcvs.dev/frequency/1hrcm>,
+        <https://constants.mipcvs.dev/frequency/1hrpt>,
+        <https://constants.mipcvs.dev/frequency/3hr>,
+        <https://constants.mipcvs.dev/frequency/3hrpt>,
+        <https://constants.mipcvs.dev/frequency/6hr>,
+        <https://constants.mipcvs.dev/frequency/6hrpt>,
+        <https://constants.mipcvs.dev/frequency/day>,
+        <https://constants.mipcvs.dev/frequency/dec>,
+        <https://constants.mipcvs.dev/frequency/fx>,
+        <https://constants.mipcvs.dev/frequency/mon>,
+        <https://constants.mipcvs.dev/frequency/monc>,
+        <https://constants.mipcvs.dev/frequency/monpt>,
+        <https://constants.mipcvs.dev/frequency/subhrpt>,
+        <https://constants.mipcvs.dev/frequency/yr>,
+        <https://constants.mipcvs.dev/frequency/yrpt> .
+

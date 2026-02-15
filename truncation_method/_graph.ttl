@@ -1,0 +1,6 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/TruncationMethod/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/truncation_method/rhomboidal>,
+        <https://constants.mipcvs.dev/truncation_method/triangular> .
+

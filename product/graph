@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/product/",
+    "@base": "https://constants.mipcvs.dev/product/",
+    "@esgvoc": "Product",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Product/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "derived"},
+    {"@id": "forcing-dataset"},
+    {"@id": "model-output"},
+    {"@id": "observations"}
+  ]
+}

@@ -1,0 +1,24 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/VerticalCoordinate/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/vertical_coordinate/air-potential-temperature>,
+        <https://constants.mipcvs.dev/vertical_coordinate/air-pressure>,
+        <https://constants.mipcvs.dev/vertical_coordinate/atmosphere-hybrid-height-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/atmosphere-hybrid-sigma-pressure-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/atmosphere-ln-pressure-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/atmosphere-sigma-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/atmosphere-sleve-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/depth>,
+        <https://constants.mipcvs.dev/vertical_coordinate/geopotential-height>,
+        <https://constants.mipcvs.dev/vertical_coordinate/height>,
+        <https://constants.mipcvs.dev/vertical_coordinate/land-ice-sigma-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/ocean-double-sigma-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/ocean-s-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/ocean-s-coordinate-g1>,
+        <https://constants.mipcvs.dev/vertical_coordinate/ocean-s-coordinate-g2>,
+        <https://constants.mipcvs.dev/vertical_coordinate/ocean-sigma-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/ocean-sigma-z-coordinate>,
+        <https://constants.mipcvs.dev/vertical_coordinate/sea-water-potential-temperature>,
+        <https://constants.mipcvs.dev/vertical_coordinate/sea-water-pressure>,
+        <https://constants.mipcvs.dev/vertical_coordinate/z-star> .
+

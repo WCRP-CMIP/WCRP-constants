@@ -1,0 +1,8 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/License/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/license/cc-by-4.0>,
+        <https://constants.mipcvs.dev/license/cc-by-nc-sa-4.0>,
+        <https://constants.mipcvs.dev/license/cc-by-sa-4.0>,
+        <https://constants.mipcvs.dev/license/cc0-1.0> .
+

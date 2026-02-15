@@ -1,0 +1,37 @@
+{
+    "validation_key": "VUA",
+    "ui_label": "Vrije Universiteit Amsterdam",
+    "description": "",
+    "acronyms": [
+        "VU"
+    ],
+    "aliases": [
+        "VU Amsterdam"
+    ],
+    "established": 1880,
+    "kind": "Education",
+    "labels": [],
+    "location": {
+        "city": "Amsterdam",
+        "country": [
+            "The Netherlands",
+            "NL"
+        ],
+        "lat": 52.37403,
+        "lon": 4.88969,
+        "@type": "esgf:location",
+        "@id": "universal:location/008xxew50"
+    },
+    "ror": "008xxew50",
+    "url": [
+        "https://vu.nl/"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "vua"
+}

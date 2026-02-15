@@ -1,0 +1,5 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/ArchiveId/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/archive_id/wcrp> .
+

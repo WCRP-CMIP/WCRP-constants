@@ -1,0 +1,38 @@
+{
+    "validation_key": "UW",
+    "ui_label": "University of Washington",
+    "description": "",
+    "acronyms": [
+        "UW"
+    ],
+    "aliases": [],
+    "established": 1861,
+    "kind": "Education",
+    "labels": [
+        "Universidad de Washington",
+        "Université de Washington"
+    ],
+    "location": {
+        "city": "Seattle",
+        "country": [
+            "United States",
+            "US"
+        ],
+        "lat": 47.60621,
+        "lon": -122.33207,
+        "@type": "esgf:location",
+        "@id": "universal:location/00cvxb145"
+    },
+    "ror": "00cvxb145",
+    "url": [
+        "https://www.washington.edu"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "uw"
+}

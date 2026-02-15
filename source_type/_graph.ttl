@@ -1,0 +1,18 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/SourceType/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/source_type/aer>,
+        <https://constants.mipcvs.dev/source_type/agcm>,
+        <https://constants.mipcvs.dev/source_type/aogcm>,
+        <https://constants.mipcvs.dev/source_type/bgc>,
+        <https://constants.mipcvs.dev/source_type/chem>,
+        <https://constants.mipcvs.dev/source_type/gridded-insitu>,
+        <https://constants.mipcvs.dev/source_type/ism>,
+        <https://constants.mipcvs.dev/source_type/land>,
+        <https://constants.mipcvs.dev/source_type/ogcm>,
+        <https://constants.mipcvs.dev/source_type/rad>,
+        <https://constants.mipcvs.dev/source_type/reanalysis>,
+        <https://constants.mipcvs.dev/source_type/satellite-blended>,
+        <https://constants.mipcvs.dev/source_type/satellite-retrieval>,
+        <https://constants.mipcvs.dev/source_type/slab> .
+

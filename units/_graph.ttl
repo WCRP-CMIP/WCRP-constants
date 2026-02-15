@@ -1,0 +1,9 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/Units/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/units/degree>,
+        <https://constants.mipcvs.dev/units/k>,
+        <https://constants.mipcvs.dev/units/km>,
+        <https://constants.mipcvs.dev/units/meter>,
+        <https://constants.mipcvs.dev/units/pa> .
+

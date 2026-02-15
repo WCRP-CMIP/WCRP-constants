@@ -1,0 +1,38 @@
+{
+    "validation_key": "AUoT",
+    "ui_label": "Aristotle University of Thessaloniki",
+    "description": "",
+    "acronyms": [],
+    "aliases": [
+        "Aristotelian University"
+    ],
+    "established": 1925,
+    "kind": "Education",
+    "labels": [
+        "Université aristote de thessalonique",
+        "Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης"
+    ],
+    "location": {
+        "city": "Thessaloniki",
+        "country": [
+            "Greece",
+            "GR"
+        ],
+        "lat": 40.64361,
+        "lon": 22.93086,
+        "@type": "esgf:location",
+        "@id": "universal:location/02j61yw88"
+    },
+    "ror": "02j61yw88",
+    "url": [
+        "https://www.auth.gr"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "auot"
+}

@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/cell_variable_type/",
+        "@base": "https://constants.mipcvs.dev/cell_variable_type/",
+        "@esgvoc": "CellVariableType",
+        "@vocab": "https://constants.mipcvs.dev/docs/contents/CellVariableType/"
+    }
+}

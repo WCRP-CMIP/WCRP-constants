@@ -1,0 +1,48 @@
+{
+    "validation_key": "LMU",
+    "ui_label": "Ludwig-Maximilians-Universität München",
+    "description": "",
+    "acronyms": [
+        "LMU"
+    ],
+    "aliases": [
+        "LMU München",
+        "Ludwig Maximilian University of Munich",
+        "Ludwig-Maximilians-Universität in Munich",
+        "University of Munich",
+        "Universität München"
+    ],
+    "established": 1472,
+    "kind": "education",
+    "labels": [
+        "Ludwig-Maximilians-Universität München"
+    ],
+    "location": [
+        {
+            "continent_code": "EU",
+            "continent_name": "Europe",
+            "country_code": "DE",
+            "country_name": "Germany",
+            "country_subdivision_code": "BY",
+            "country_subdivision_name": "Bavaria",
+            "lat": 48.13743,
+            "lng": 11.57549,
+            "name": "Munich",
+            "@type": "wcrp:location",
+            "@id": "universal:location/05591te55"
+        }
+    ],
+    "ror": "05591te55",
+    "url": [
+        "https://www.lmu.de",
+        "http://en.wikipedia.org/wiki/Ludwig_Maximilian_University_of_Munich"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "universal",
+        "constants"
+    ],
+    "@id": "lmu"
+}

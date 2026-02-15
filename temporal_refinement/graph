@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/temporal_refinement/",
+    "@base": "https://constants.mipcvs.dev/temporal_refinement/",
+    "@esgvoc": "TemporalRefinement",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/TemporalRefinement/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "static"},
+    {"@id": "adaptive"},
+    {"@id": "dynamically-stretched"}
+  ]
+}

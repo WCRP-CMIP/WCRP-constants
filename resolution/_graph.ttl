@@ -1,0 +1,19 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/Resolution/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/resolution/0.5km>,
+        <https://constants.mipcvs.dev/resolution/10000km>,
+        <https://constants.mipcvs.dev/resolution/1000km>,
+        <https://constants.mipcvs.dev/resolution/100km>,
+        <https://constants.mipcvs.dev/resolution/10km>,
+        <https://constants.mipcvs.dev/resolution/1km>,
+        <https://constants.mipcvs.dev/resolution/1x1degree>,
+        <https://constants.mipcvs.dev/resolution/2.5km>,
+        <https://constants.mipcvs.dev/resolution/2500km>,
+        <https://constants.mipcvs.dev/resolution/250km>,
+        <https://constants.mipcvs.dev/resolution/25km>,
+        <https://constants.mipcvs.dev/resolution/5000km>,
+        <https://constants.mipcvs.dev/resolution/500km>,
+        <https://constants.mipcvs.dev/resolution/50km>,
+        <https://constants.mipcvs.dev/resolution/5km> .
+

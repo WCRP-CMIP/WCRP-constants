@@ -1,0 +1,9 @@
+@prefix ns1: <https://constants.mipcvs.dev/docs/contents/CellVariableType/> .
+
+[] a ns1:Collection ;
+    ns1:contents <https://constants.mipcvs.dev/cell_variable_type/mass>,
+        <https://constants.mipcvs.dev/cell_variable_type/velocity>,
+        <https://constants.mipcvs.dev/cell_variable_type/vorticity>,
+        <https://constants.mipcvs.dev/cell_variable_type/x-velocity>,
+        <https://constants.mipcvs.dev/cell_variable_type/y-velocity> .
+

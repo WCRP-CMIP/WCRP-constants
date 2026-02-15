@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/mip/",
+    "@base": "https://constants.mipcvs.dev/mip/",
+    "@esgvoc": "Mip",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Mip/"
+  },
+  "@type": [
+    "Collection"
+  ],
+  "contents": [
+    {"@id": "cmip5"},
+    {"@id": "cmip7"},
+    {"@id": "cmip6plus"},
+    {"@id": "cmip6"}
+  ]
+}
