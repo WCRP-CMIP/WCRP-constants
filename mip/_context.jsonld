@@ -1,8 +1,8 @@
 {
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/mip/",
-        "@base": "https://constants.mipcvs.dev/mip/",
-        "@esgvoc": "Mip",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/Mip/"
-    }
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/mip/",
+    "@base": "https://constants.mipcvs.dev/mip/",
+    "@esgvoc": "Mip",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Mip/"
+  }
 }

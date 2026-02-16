@@ -1,8 +1,8 @@
 {
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/truncation_method/",
-        "@base": "https://constants.mipcvs.dev/truncation_method/",
-        "@esgvoc": "TruncationMethod",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/TruncationMethod/"
-    }
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/truncation_method/",
+    "@base": "https://constants.mipcvs.dev/truncation_method/",
+    "@esgvoc": "TruncationMethod",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/TruncationMethod/"
+  }
 }

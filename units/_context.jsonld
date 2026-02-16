@@ -1,8 +1,8 @@
 {
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/units/",
-        "@base": "https://constants.mipcvs.dev/units/",
-        "@esgvoc": "Units",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/Units/"
-    }
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/units/",
+    "@base": "https://constants.mipcvs.dev/units/",
+    "@esgvoc": "Units",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Units/"
+  }
 }

@@ -1,8 +1,8 @@
 {
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/license/",
-        "@base": "https://constants.mipcvs.dev/license/",
-        "@esgvoc": "License",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/License/"
-    }
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/license/",
+    "@base": "https://constants.mipcvs.dev/license/",
+    "@esgvoc": "License",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/License/"
+  }
 }

@@ -1,8 +1,8 @@
 {
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/frequency/",
-        "@base": "https://constants.mipcvs.dev/frequency/",
-        "@esgvoc": "Frequency",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/Frequency/"
-    }
+  "@context": {
+    "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/frequency/",
+    "@base": "https://constants.mipcvs.dev/frequency/",
+    "@esgvoc": "Frequency",
+    "@vocab": "https://constants.mipcvs.dev/docs/contents/Frequency/"
+  }
 }
