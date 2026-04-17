@@ -1,5 +1,5 @@
 {
-    "validation_key": "unstructured_triangular",
+    "validation_key": "unstructured-triangular",
     "ui_label": "Unstructured Triangular",
     "description": "An unstructured mesh consisting solely of triangles.",
     "@context": "_context",

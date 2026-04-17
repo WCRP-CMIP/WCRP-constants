@@ -1,5 +1,5 @@
 {
-    "validation_key": "regular_gaussian",
+    "validation_key": "regular-gaussian",
     "ui_label": "Regular Gaussian",
     "description": "A Gaussian grid for which the number of longitudinal points is constant for each latitude.",
     "@context": "_context",

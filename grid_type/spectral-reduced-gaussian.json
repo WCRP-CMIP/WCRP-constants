@@ -1,5 +1,5 @@
 {
-    "validation_key": "spectral_reduced_gaussian",
+    "validation_key": "spectral-reduced-gaussian",
     "ui_label": "Spectral Reduced Gaussian",
     "description": "A grid based on the transformation from spectral space to a reduced Gaussian grid.",
     "@context": "_context",

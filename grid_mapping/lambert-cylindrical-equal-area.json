@@ -1,5 +1,5 @@
 {
-    "validation_key": "lambert_cylindrical_equal_area",
+    "validation_key": "lambert-cylindrical-equal-area",
     "ui_label": "Lambert Cylindrical Equal Area",
     "description": "A cylindrical map projection that preserves area accurately but distorts shape, especially away from the equator, as defined by the CF conventions.",
     "@context": "_context",

@@ -1,5 +1,5 @@
 {
-    "validation_key": "gridded_insitu",
+    "validation_key": "gridded-insitu",
     "ui_label": "",
     "description": "gridded product based on measurements collected from in-situ instruments",
     "@context": "_context",

@@ -1,5 +1,5 @@
 {
-    "validation_key": "satellite_retrieval",
+    "validation_key": "satellite-retrieval",
     "ui_label": "",
     "description": "gridded product based on satellite measurements",
     "@context": "_context",

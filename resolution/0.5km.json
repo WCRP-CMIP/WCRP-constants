@@ -1,6 +1,6 @@
 {
-    "validation_key": "0.5 km",
-    "ui_label": "",
+    "validation_key": "0-5-km",
+    "ui_label": "0.5 km",
     "description": "Resolution of 0.5 km",
     "unit": "km",
     "value": "0.5",

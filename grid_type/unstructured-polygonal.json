@@ -1,5 +1,5 @@
 {
-    "validation_key": "unstructured_polygonal",
+    "validation_key": "unstructured-polygonal",
     "ui_label": "Unstructured Polygonal",
     "description": "An unstructured mesh consisting of arbitrary polygons.",
     "@context": "_context",

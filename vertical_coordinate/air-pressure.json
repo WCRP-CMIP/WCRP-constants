@@ -1,5 +1,5 @@
 {
-    "validation_key": "air_pressure",
+    "validation_key": "air-pressure",
     "ui_label": "Air Pressure",
     "description": "Air pressure is the pressure that exists in the medium of air, as defined by the CF conventions.",
     "@context": "_context",

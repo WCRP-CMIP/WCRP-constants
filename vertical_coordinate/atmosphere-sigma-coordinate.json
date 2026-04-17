@@ -1,5 +1,5 @@
 {
-    "validation_key": "atmosphere_sigma_coordinate",
+    "validation_key": "atmosphere-sigma-coordinate",
     "ui_label": "Atmosphere Sigma Coordinate",
     "description": "Parametric atmosphere sigma coordinate, as defined by the CF conventions.",
     "@context": "_context",
