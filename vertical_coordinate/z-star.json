@@ -1,5 +1,5 @@
 {
-    "validation_key": "z-star",
+    "validation_key": "z*",
     "ui_label": "z*",
     "description": "The z* coordinate, as defined by Adcroft and Campin (2004).",
     "@context": "_context",
