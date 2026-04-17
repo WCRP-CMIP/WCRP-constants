@@ -9,10 +9,10 @@
     "Collection"
   ],
   "contents": [
+    {"@id": "arakawa-d"},
+    {"@id": "arakawa-b"},
     {"@id": "arakawa-c"},
     {"@id": "arakawa-e"},
-    {"@id": "arakawa-b"},
-    {"@id": "arakawa-a"},
-    {"@id": "arakawa-d"}
+    {"@id": "arakawa-a"}
   ]
 }

@@ -1,5 +1,5 @@
 {
-    "validation_key": "unstructured_quadrilateral",
+    "validation_key": "unstructured-quadrilateral",
     "ui_label": "Unstructured Quadrilateral",
     "description": "An unstructured mesh consisting solely of quadrilaterals.",
     "@context": "_context",

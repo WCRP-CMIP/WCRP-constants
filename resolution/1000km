@@ -1,6 +1,6 @@
 {
-    "validation_key": "1000 km",
-    "ui_label": "",
+    "validation_key": "1000-km",
+    "ui_label": "1000 km",
     "description": "Resolution of 1000 km",
     "unit": "km",
     "value": "1000",

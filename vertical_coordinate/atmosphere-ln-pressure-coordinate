@@ -1,5 +1,5 @@
 {
-    "validation_key": "atmosphere_ln_pressure_coordinate",
+    "validation_key": "atmosphere-ln-pressure-coordinate",
     "ui_label": "Atmosphere Ln Pressure Coordinate",
     "description": "Parametric atmosphere natural log pressure coordinate, as defined by the CF conventions.",
     "@context": "_context",

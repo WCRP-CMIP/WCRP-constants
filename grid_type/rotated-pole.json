@@ -1,5 +1,5 @@
 {
-    "validation_key": "rotated_pole",
+    "validation_key": "rotated-pole",
     "ui_label": "Rotated Pole",
     "description": "A regular latitude-longitude grid that is rotated to define a different north pole location.",
     "@context": "_context",

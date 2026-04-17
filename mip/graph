@@ -10,8 +10,8 @@
   ],
   "contents": [
     {"@id": "cmip5"},
-    {"@id": "cmip7"},
     {"@id": "cmip6plus"},
-    {"@id": "cmip6"}
+    {"@id": "cmip6"},
+    {"@id": "cmip7"}
   ]
 }

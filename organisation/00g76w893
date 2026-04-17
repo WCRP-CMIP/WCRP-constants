@@ -1,5 +1,5 @@
 {
-    "validation_key": "CLEX",
+    "validation_key": "ARCCSS",
     "ui_label": "ARC Centre for Nanoscale BioPhotonics",
     "description": "",
     "acronyms": [
@@ -40,5 +40,5 @@
         "universal",
         "constants"
     ],
-    "@id": "clex"
+    "@id": "arccss"
 }

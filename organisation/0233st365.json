@@ -1,5 +1,5 @@
 {
-    "validation_key": "CNRM-CERFACS",
+    "validation_key": "Météo-France",
     "ui_label": "Météo-France",
     "description": "",
     "acronyms": [],
@@ -36,5 +36,5 @@
         "universal",
         "constants"
     ],
-    "@id": "cnrm-cerfacs"
+    "@id": "météo-france"
 }

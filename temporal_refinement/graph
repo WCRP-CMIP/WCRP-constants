@@ -9,8 +9,8 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "static"},
     {"@id": "adaptive"},
+    {"@id": "static"},
     {"@id": "dynamically-stretched"}
   ]
 }

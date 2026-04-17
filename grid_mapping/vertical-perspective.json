@@ -1,5 +1,5 @@
 {
-    "validation_key": "vertical_perspective",
+    "validation_key": "vertical-perspective",
     "ui_label": "Vertical Perspective",
     "description": "A projection used to represent the Earth from a point of view directly above its centre, as defined by the CF conventions.",
     "@context": "_context",

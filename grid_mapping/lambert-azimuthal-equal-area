@@ -1,5 +1,5 @@
 {
-    "validation_key": "lambert_azimuthal_equal_area",
+    "validation_key": "lambert-azimuthal-equal-area",
     "ui_label": "Lambert Azimuthal Equal Area",
     "description": "A projection that accurately preserves the area of all regions on a map, as defined by the CF conventions.",
     "@context": "_context",

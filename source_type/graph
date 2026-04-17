@@ -9,19 +9,19 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "aogcm"},
-    {"@id": "chem"},
-    {"@id": "slab"},
     {"@id": "aer"},
-    {"@id": "satellite-retrieval"},
-    {"@id": "agcm"},
-    {"@id": "ism"},
-    {"@id": "rad"},
-    {"@id": "ogcm"},
+    {"@id": "chem"},
     {"@id": "gridded-insitu"},
+    {"@id": "rad"},
+    {"@id": "satellite-retrieval"},
+    {"@id": "slab"},
     {"@id": "bgc"},
-    {"@id": "land"},
+    {"@id": "agcm"},
     {"@id": "satellite-blended"},
+    {"@id": "aogcm"},
+    {"@id": "land"},
+    {"@id": "ogcm"},
+    {"@id": "ism"},
     {"@id": "reanalysis"}
   ]
 }

@@ -1,5 +1,5 @@
 {
-    "validation_key": "latitude_longitude",
+    "validation_key": "latitude-longitude",
     "ui_label": "Latitude-Longitude",
     "description": "A projection that treats latitude and longitude as planar X and Y coordinates, as defined by the CF conventions.",
     "@context": "_context",

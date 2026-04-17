@@ -1,5 +1,5 @@
 {
-    "validation_key": "NIMR",
+    "validation_key": "MRI",
     "ui_label": "Meteorological Research Institute",
     "description": "",
     "acronyms": [],
@@ -43,5 +43,5 @@
         "universal",
         "constants"
     ],
-    "@id": "nimr"
+    "@id": "mri"
 }

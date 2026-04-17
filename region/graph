@@ -9,15 +9,15 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "northern-hemisphere"},
-    {"@id": "30s-90s"},
+    {"@id": "arctic"},
+    {"@id": "limited-area"},
     {"@id": "tropics"},
-    {"@id": "greenland"},
-    {"@id": "antarctica"},
     {"@id": "shem"},
     {"@id": "southern-hemisphere"},
-    {"@id": "arctic"},
+    {"@id": "30s-90s"},
     {"@id": "global"},
-    {"@id": "limited-area"}
+    {"@id": "northern-hemisphere"},
+    {"@id": "antarctica"},
+    {"@id": "greenland"}
   ]
 }

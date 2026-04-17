@@ -9,9 +9,9 @@
     "Collection"
   ],
   "contents": [
+    {"@id": "cc-by-sa-4.0"},
     {"@id": "cc0-1.0"},
-    {"@id": "cc-by-nc-sa-4.0"},
     {"@id": "cc-by-4.0"},
-    {"@id": "cc-by-sa-4.0"}
+    {"@id": "cc-by-nc-sa-4.0"}
   ]
 }

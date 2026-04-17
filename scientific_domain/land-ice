@@ -1,5 +1,5 @@
 {
-    "validation_key": "land_ice",
+    "validation_key": "land-ice",
     "ui_label": "Land Ice",
     "description": "Land Ice",
     "alias": [

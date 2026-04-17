@@ -1,5 +1,5 @@
 {
-    "validation_key": "yin_yang",
+    "validation_key": "yin-yang",
     "ui_label": "Yin-Yang",
     "description": "Two overlapping grid patches.",
     "@context": "_context",

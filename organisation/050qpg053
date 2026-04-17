@@ -1,5 +1,5 @@
 {
-    "validation_key": "RCEC",
+    "validation_key": "AS-RCEC",
     "ui_label": "Research Center for Environmental Changes, Academia Sinica",
     "description": "",
     "acronyms": [
@@ -38,5 +38,5 @@
         "universal",
         "constants"
     ],
-    "@id": "rcec"
+    "@id": "as-rcec"
 }

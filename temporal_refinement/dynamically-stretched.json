@@ -1,5 +1,5 @@
 {
-    "validation_key": "dynamically_stretched",
+    "validation_key": "dynamically-stretched",
     "ui_label": "Dynamically Stretched",
     "description": "The total number of grid points stays constant, but grid points can be dynamically relocated.",
     "@context": "_context",

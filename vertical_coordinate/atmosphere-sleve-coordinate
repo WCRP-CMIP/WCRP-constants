@@ -1,5 +1,5 @@
 {
-    "validation_key": "atmosphere_sleve_coordinate",
+    "validation_key": "atmosphere-sleve-coordinate",
     "ui_label": "Atmosphere SLEVE Coordinate",
     "description": "Parametric atmosphere smooth vertical level coordinate, as defined by the CF conventions.",
     "@context": "_context",

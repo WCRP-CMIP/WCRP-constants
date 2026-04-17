@@ -10,8 +10,8 @@
   ],
   "contents": [
     {"@id": "derived"},
-    {"@id": "forcing-dataset"},
     {"@id": "model-output"},
-    {"@id": "observations"}
+    {"@id": "observations"},
+    {"@id": "forcing-dataset"}
   ]
 }
