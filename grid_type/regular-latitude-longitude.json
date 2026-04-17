@@ -1,5 +1,5 @@
 {
-    "validation_key": "regular_latitude_longitude",
+    "validation_key": "regular-latitude-longitude",
     "ui_label": "Regular Latitude-Longitude",
     "description": "A rectilinear latitude-longitude grid with evenly spaced latitude points and evenly spaced longitude points.",
     "@context": "_context",

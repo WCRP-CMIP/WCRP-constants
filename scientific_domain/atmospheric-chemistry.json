@@ -1,5 +1,5 @@
 {
-    "validation_key": "atmospheric_chemistry",
+    "validation_key": "atmospheric-chemistry",
     "ui_label": "Atmospheric Chemistry",
     "description": "Atmospheric Chemistry",
     "alias": [

@@ -1,5 +1,5 @@
 {
-    "validation_key": "ocean_s_coordinate",
+    "validation_key": "ocean-s-coordinate",
     "ui_label": "Ocean S Coordinate",
     "description": "Parametric ocean s-coordinate, as defined by the CF conventions.",
     "@context": "_context",

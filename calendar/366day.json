@@ -1,9 +1,9 @@
 {
-    "validation_key": "366_day",
+    "validation_key": "366-day",
     "ui_label": "366-day (All Leap)",
     "description": "A calendar in which each year consists of 366 days, i.e., every year is a leap year with February having 29 days.",
     "alias": [
-        "all_leap"
+        "all-leap"
     ],
     "@context": "_context",
     "@type": [

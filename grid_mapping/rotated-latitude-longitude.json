@@ -1,5 +1,5 @@
 {
-    "validation_key": "rotated_latitude_longitude",
+    "validation_key": "rotated-latitude-longitude",
     "ui_label": "Rotated Latitude-Longitude",
     "description": "A geographic coordinate system where the traditional north pole is shifted to a different location, as defined by the CF conventions.",
     "@context": "_context",

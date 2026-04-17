@@ -1,6 +1,6 @@
 {
-    "validation_key": "1x1 degree",
-    "ui_label": "",
+    "validation_key": "1x1-degree",
+    "ui_label": "1x1 Degree",
     "description": "Resolution of 1x1 degree",
     "unit": "degree",
     "value": "1x1",

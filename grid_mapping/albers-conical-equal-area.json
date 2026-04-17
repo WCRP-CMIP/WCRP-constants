@@ -1,5 +1,5 @@
 {
-    "validation_key": "albers_conical_equal_area",
+    "validation_key": "albers-conical-equal-area",
     "ui_label": "Albers Conical Equal Area",
     "description": "A projection that preserves area but not shape, creating accurate representations of large, east-west-oriented land masses, as defined by the CF conventions.",
     "@context": "_context",
