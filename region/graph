@@ -12,7 +12,6 @@
     {"@id": "arctic"},
     {"@id": "limited-area"},
     {"@id": "tropics"},
-    {"@id": "shem"},
     {"@id": "southern-hemisphere"},
     {"@id": "30s-90s"},
     {"@id": "global"},
