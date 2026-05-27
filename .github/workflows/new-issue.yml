@@ -31,10 +31,10 @@ jobs:
       pr_number:       ${{ steps.find_pr.outputs.pr_number }}
       labels_filtered: ${{ steps.filter_labels.outputs.filtered }}
     steps:
-      - name: Checkout src-data
+      - name: Checkout main
         uses: actions/checkout@v4
         with:
-          ref: src-data
+          ref: main
           fetch-depth: 0
 
       - name: Filter labels
