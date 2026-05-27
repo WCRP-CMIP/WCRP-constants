@@ -22,9 +22,10 @@ GEN_TEMPLATE_DIR  = REPO_ROOT / '.github' / 'GEN_ISSUE_TEMPLATE'
 
 def load_template_registry():
     """
-    Build {label: issue_category} from every .json file in GEN_ISSUE_TEMPLATE.
-    The issue_category is the template filename without .yml — and must match
-    an ISSUE_SCRIPT/{issue_category}.py handler.
+    Build {issue_category: meta} from every .json in GEN_ISSUE_TEMPLATE.
+    Each meta has: handler_path, folder, types.
+    issue_category = template filename = ISSUE_SCRIPT filename (no ext).
+    folder_tag     = destination folder (may differ — e.g. consortium -> organisation/)
     """
     registry = {}
     for path in GEN_TEMPLATE_DIR.glob('*.json'):
@@ -35,22 +36,27 @@ def load_template_registry():
         except Exception:
             continue
         category = meta.get('issue_category') or path.stem
-        for label in meta.get('labels', []):
-            registry[label] = category
+        handler  = ISSUE_SCRIPT_DIR / f"{category}.py"
+        if not handler.exists():
+            continue
+        folder = meta.get('folder_tag') or category
+        types  = meta.get('types') or [f'wcrp:{category}']
+        registry[category] = {
+            'handler': handler,
+            'folder':  folder,
+            'types':   types,
+        }
     return registry
 
 
 def find_handler(labels, registry):
     """
-    Return (issue_category, handler_path) by matching issue labels against
-    the registry, then confirming the handler script exists.
+    Match an issue label to a known issue_category in the registry.
+    Returns (category, meta) or (None, None).
     """
     for label in labels:
-        category = registry.get(label)
-        if category:
-            path = ISSUE_SCRIPT_DIR / f"{category}.py"
-            if path.exists():
-                return category, path
+        if label in registry:
+            return label, registry[label]
     return None, None
 
 
@@ -113,13 +119,13 @@ def main():
 
     # Load registry and find handler
     registry = load_template_registry()
-    handler_name, handler_path = find_handler(labels, registry)
+    handler_name, meta = find_handler(labels, registry)
 
-    if not handler_path:
+    if not meta:
         print(f"No handler found for labels {labels} — skipping")
         sys.exit(0)
 
-    print(f"Template → {handler_name}.py")
+    print(f"Template → {handler_name}.py  folder={meta['folder']}  types={meta['types']}")
 
     # Parse body
     parsed = parse_issue_body(issue_data.get('body', ''))
@@ -131,10 +137,13 @@ def main():
         'url':        issue_data.get('url', ''),
         'labels':     labels,
         'created_at': issue_data.get('createdAt', ''),
+        'folder':     meta['folder'],
+        'types':      meta['types'],
+        'category':   handler_name,
     }
 
     # Run handler
-    handler = load_handler(handler_path)
+    handler = load_handler(meta['handler'])
     files = handler.run(parsed, issue_meta)
 
     if files is None:

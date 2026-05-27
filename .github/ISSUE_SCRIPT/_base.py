@@ -1,8 +1,9 @@
 """
-Generic handler for simple WCRP CV entries.
+Generic handler for WCRP CV entries.
 
-Each CV-specific script imports this and calls run()/update() with
-its own folder and type list.
+Reads folder + types from issue_meta (populated by process_issue.py from
+the template's .json file via folder_tag label). Handlers can call this
+directly — no need to hardcode FOLDER/TYPES per template.
 """
 
 import os
@@ -21,16 +22,22 @@ def _clean(value):
     return value
 
 
-def run(parsed_issue, issue, folder, types, dry_run=False):
-    prefix = "[DRY RUN] " if dry_run else ""
+def run(parsed_issue, issue, dry_run=False):
+    folder = issue.get('folder')
+    types  = issue.get('types', [f'wcrp:{folder}'] if folder else [])
+
+    if not folder:
+        print("❌ No folder in issue_meta — check folder_tag in template .json")
+        return None
 
     validation_key = (
         parsed_issue.get('validation_key') or
-        parsed_issue.get('label') or ''
+        parsed_issue.get('label') or
+        parsed_issue.get('acronym') or ''
     ).strip()
 
     if not validation_key:
-        print(f"{prefix}❌ No validation_key provided")
+        print("❌ No validation_key provided")
         return None
 
     data_id = validation_key.lower().replace(' ', '-').replace('_', '-')
@@ -51,7 +58,7 @@ def run(parsed_issue, issue, folder, types, dry_run=False):
         data['description'] = description
 
     for k, v in parsed_issue.items():
-        if k in IGNORE or k in ('validation_key', 'ui_label', 'long_label', 'description', 'label'):
+        if k in IGNORE or k in ('validation_key', 'ui_label', 'long_label', 'description', 'label', 'acronym'):
             continue
         cleaned = _clean(v)
         if cleaned is not None:
@@ -62,7 +69,7 @@ def run(parsed_issue, issue, folder, types, dry_run=False):
     collab_str = parsed_issue.get('additional_collaborators', parsed_issue.get('collaborators', ''))
     contributors = [c.strip() for c in collab_str.split(',') if c.strip()] if collab_str else []
 
-    print(f"{prefix}→ {file_path}")
+    print(f"→ {file_path}")
     print(json.dumps(data, indent=2, ensure_ascii=False))
 
     return {
@@ -74,8 +81,7 @@ def run(parsed_issue, issue, folder, types, dry_run=False):
 
 
 def update(files_to_write, parsed_issue, issue, dry_run=False):
-    for file_path, data in files_to_write.items():
-        if file_path.startswith('_'):
-            continue
-        print(f"✓ {file_path} ready")
+    for file_path in files_to_write:
+        if not file_path.startswith('_'):
+            print(f"✓ {file_path} ready")
     return files_to_write
