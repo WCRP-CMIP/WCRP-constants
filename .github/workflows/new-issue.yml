@@ -1,0 +1,233 @@
+name: ⟳ New Issue Processing
+
+run-name: >-
+  Issue${{ github.event.issue.number || inputs.issue_number }}
+  ${{
+    github.event_name == 'workflow_dispatch' && '(manual)' ||
+    github.event.action == 'edited' && '(edit)' ||
+    '(new)'
+  }}
+
+on:
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to process'
+        required: true
+        type: string
+
+permissions:
+  issues: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  process-issue:
+    name: Issue${{ github.event.issue.number || inputs.issue_number }} processing
+    runs-on: ubuntu-latest
+    outputs:
+      pr_number:       ${{ steps.find_pr.outputs.pr_number }}
+      validation:      ${{ steps.run_issue.outputs.validation }}
+      labels_filtered: ${{ steps.filter_labels.outputs.filtered }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Filter labels
+        id: filter_labels
+        env:
+          LABELS_JSON: ${{ toJSON(github.event.issue.labels.*.name) }}
+        run: |
+          FILTERED=$(printf '%s' "${LABELS_JSON:-[]}" | python3 -c "
+          import json, sys
+          try:
+              labels = json.load(sys.stdin) or []
+          except json.JSONDecodeError:
+              labels = []
+          kept = [l for l in labels if '_' in l and l != 'pull_req']
+          print('|'.join(kept))
+          ")
+          echo "filtered=$FILTERED" >> "$GITHUB_OUTPUT"
+          echo "Filtered labels: '$FILTERED'"
+        shell: bash
+
+      - name: Install CMIPLD
+        uses: WCRP-CMIP/CMIPLD/actions/cmipld@main
+
+      - name: Configure Git
+        run: git config --global push.default simple
+        shell: bash
+
+      - name: Process issue
+        id: run_issue
+        env:
+          ISSUE_NUMBER:      ${{ github.event.inputs.issue_number || github.event.issue.number }}
+          ISSUE_SUBMITTER:   ${{ github.event.issue.user.login }}
+          ISSUE_CREATED_AT:  ${{ github.event.issue.created_at }}
+          GH_TOKEN:          ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          GITHUB_TOKEN:      ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          cd $GITHUB_WORKSPACE
+
+          LDR_DATA=$(mktemp -d)
+          git fetch origin src-data 2>/dev/null || true
+          git --work-tree="$LDR_DATA" checkout origin/src-data -- . 2>/dev/null || true
+
+          ldr server stop 2>/dev/null || true
+          cd "$LDR_DATA"
+          ldr server start
+          cd "$GITHUB_WORKSPACE"
+
+          echo "Waiting for LDR server on port 3333..."
+          for i in $(seq 1 30); do
+            if timeout 1 bash -c 'cat < /dev/null > /dev/tcp/localhost/3333' 2>/dev/null; then
+              echo "LDR server ready (attempt $i)"
+              break
+            fi
+            sleep 1
+          done
+
+          if ! timeout 1 bash -c 'cat < /dev/null > /dev/tcp/localhost/3333' 2>/dev/null; then
+            echo "WARNING: LDR server did not start — continuing without live graph data"
+          fi
+
+          set +e
+          new_issue --issue $ISSUE_NUMBER
+          RC=$?
+          set -e
+          if [ $RC -eq 0 ]; then
+            echo "validation=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "validation=fail" >> "$GITHUB_OUTPUT"
+            exit $RC
+          fi
+        shell: bash
+
+      - name: Find PR for this issue
+        id: find_pr
+        env:
+          GH_TOKEN:     ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
+          REPO:         ${{ github.repository }}
+        run: |
+          PATTERN="_${ISSUE_NUMBER}_|[-_]${ISSUE_NUMBER}\$"
+          PR_NUMBER=""
+          for attempt in $(seq 1 4); do
+            PR_NUMBER=$(gh pr list --repo "$REPO" --state open \
+              --limit 200 \
+              --json number,headRefName \
+              --jq "[.[] | select(.headRefName | test(\"$PATTERN\"))] | .[0].number" \
+              2>/dev/null || true)
+            if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ]; then
+              break
+            fi
+            echo "Attempt $attempt/4: PR not visible yet, retrying in 2s..."
+            sleep 2
+          done
+
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "No open PR found for issue #${ISSUE_NUMBER}."
+            echo "pr_number=" >> "$GITHUB_OUTPUT"
+          else
+            echo "Found PR #${PR_NUMBER}"
+            echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+            PR_URL=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json url --jq '.url')
+            echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
+      - name: Add changes-made label if changes-requested exists
+        if: >
+          steps.find_pr.outputs.pr_number != '' &&
+          github.event.action == 'edited'
+        env:
+          GH_TOKEN:     ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          REPO:         ${{ github.repository }}
+          PR_NUMBER:    ${{ steps.find_pr.outputs.pr_number }}
+          ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          EDITOR:       ${{ github.event.sender.login }}
+        run: |
+          if [ "$EDITOR" != "$ISSUE_AUTHOR" ]; then
+            echo "Editor ($EDITOR) is not the issue author ($ISSUE_AUTHOR) — skipping."
+            exit 0
+          fi
+          HAS_CR=$(gh pr view "$PR_NUMBER" --repo "$REPO" \
+            --json labels --jq '[.labels[].name] | any(. == "changes-requested")' \
+            2>/dev/null || echo 'false')
+          if [ "$HAS_CR" != "true" ]; then
+            echo "No changes-requested label on PR #${PR_NUMBER} — skipping."
+            exit 0
+          fi
+          gh label create "changes-made" --repo "$REPO" \
+            --color "5319e7" \
+            --description "Submitter has made changes in response to review" \
+            --force 2>/dev/null || true
+          gh pr    edit "$PR_NUMBER"    --repo "$REPO" --add-label "changes-made" || true
+          gh issue edit "$ISSUE_NUMBER" --repo "$REPO" --add-label "changes-made" || true
+        shell: bash
+
+  status-marker:
+    needs: process-issue
+    if: always()
+    runs-on: ubuntu-latest
+    name: >-
+      ${{
+        needs.process-issue.result == 'success' && needs.process-issue.outputs.pr_number != ''
+          && format('Issue{0}_{1} ; PR{2}',
+                    github.event.issue.number || inputs.issue_number,
+                    needs.process-issue.outputs.labels_filtered,
+                    needs.process-issue.outputs.pr_number)
+        || needs.process-issue.result == 'success'
+          && format('Issue{0}_{1} ; (no PR)',
+                    github.event.issue.number || inputs.issue_number,
+                    needs.process-issue.outputs.labels_filtered)
+        || format('Issue{0}_{1} ValidationFail',
+                  github.event.issue.number || inputs.issue_number,
+                  needs.process-issue.outputs.labels_filtered)
+      }}
+    steps:
+      - name: Record outcome in summary
+        run: |
+          ISSUE_NUM="${{ github.event.issue.number || inputs.issue_number }}"
+          LABELS="${{ needs.process-issue.outputs.labels_filtered }}"
+          if [ -n "$LABELS" ]; then
+            ISSUE_TAG="Issue${ISSUE_NUM}_${LABELS}"
+          else
+            ISSUE_TAG="Issue${ISSUE_NUM}"
+          fi
+          REPO_URL="${{ github.server_url }}/${{ github.repository }}"
+          ISSUE_URL="${REPO_URL}/issues/${ISSUE_NUM}"
+          {
+            echo "| Item | Value |"
+            echo "|------|-------|"
+            echo "| **Issue**  | [#${ISSUE_NUM}](${ISSUE_URL}) |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ needs.process-issue.result }}" = "success" ]; then
+            PR="${{ needs.process-issue.outputs.pr_number }}"
+            if [ -n "$PR" ]; then
+              PR_URL="${REPO_URL}/pull/${PR}"
+              {
+                echo "| **PR**     | [#${PR}](${PR_URL}) |"
+                echo "| **Status** | ✅ Validation passed — PR created/updated |"
+                echo "## ✅ ${ISSUE_TAG} ; PR${PR}"
+              } >> "$GITHUB_STEP_SUMMARY"
+            else
+              {
+                echo "| **Status** | ⚠️ Validation passed — no PR created |"
+                echo "## ⚠️ ${ISSUE_TAG} ; (no PR)"
+              } >> "$GITHUB_STEP_SUMMARY"
+            fi
+          else
+            {
+              echo "| **Status** | ❌ Validation failed |"
+              echo "## ❌ ${ISSUE_TAG} ValidationFail"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+        shell: bash
