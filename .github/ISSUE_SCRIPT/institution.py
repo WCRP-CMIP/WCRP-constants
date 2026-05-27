@@ -1,7 +1,7 @@
 """
-Institution Issue Handler
-Processes institution submissions, fetches ROR data, validates,
-and returns a {filepath: data} dict ready for process_issue.py to write.
+Institution Issue Handler — custom logic for ROR lookup.
+Folder and types come from issue_meta (driven by template's folder_tag / types
+in the .json file), so the same script can be reused if folder ever changes.
 """
 
 import os
@@ -10,9 +10,6 @@ import json
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import update_ror
-
-FOLDER = 'organisation'
-TYPES  = ['wcrp:organisation', 'wcrp:institution']
 
 
 def similarity(a, b):
@@ -34,6 +31,9 @@ def gh_label(issue_number, label):
 def run(parsed_issue, issue, dry_run=False):
     prefix = "[DRY RUN] " if dry_run else ""
     issue_number = issue.get('number', os.environ.get('ISSUE_NUMBER', ''))
+    folder = issue.get('folder', 'organisation')
+    types  = issue.get('types', ['wcrp:organisation', 'wcrp:institution'])
+
     warnings = []
     ranking  = None
     ror_name = None
@@ -51,7 +51,7 @@ def run(parsed_issue, issue, dry_run=False):
         return None
 
     data_id = acronym.lower().replace(' ', '-').replace('_', '-')
-    print(f"{prefix}Acronym={acronym}  @id={data_id}  ROR={ror_id or 'pending'}")
+    print(f"{prefix}Acronym={acronym}  @id={data_id}  folder={folder}  ROR={ror_id or 'pending'}")
 
     ror_empty = not ror_id or ror_id.lower() in ('pending', 'none', '')
 
@@ -67,10 +67,13 @@ def run(parsed_issue, issue, dry_run=False):
         except Exception as e:
             warnings.append(f"Could not fetch ROR data: {e}")
             print(f"{prefix}⚠ {warnings[-1]}")
-            data = _basic_data(data_id, acronym, full_name, ror_id)
+            data = _basic_data(data_id, acronym, full_name, ror_id, types)
     else:
         warnings.append("No ROR ID provided — institution data is incomplete")
-        data = _basic_data(data_id, acronym, full_name, None)
+        data = _basic_data(data_id, acronym, full_name, None, types)
+
+    # Ensure @type reflects the template's declared types
+    data['@type'] = types
 
     if not dry_run and issue_number:
         _post_summary(issue_number, acronym, full_name, ror_id, ror_name, ranking, warnings)
@@ -80,7 +83,7 @@ def run(parsed_issue, issue, dry_run=False):
     print(json.dumps(data, indent=2, ensure_ascii=False))
 
     return {
-        f"{FOLDER}/{data_id}.json": data,
+        f"{folder}/{data_id}.json": data,
         '_author':       issue.get('author'),
         '_contributors': contributors,
         '_make_pull':    True,
@@ -89,7 +92,6 @@ def run(parsed_issue, issue, dry_run=False):
 
 def update(files, parsed_issue, issue, dry_run=False):
     prefix = "[DRY RUN] " if dry_run else ""
-    issue_number = issue.get('number', os.environ.get('ISSUE_NUMBER', ''))
 
     file_path = next((p for p in files if not p.startswith('_')), None)
     if not file_path:
@@ -109,15 +111,9 @@ def update(files, parsed_issue, issue, dry_run=False):
     try:
         ror_data = update_ror.get_institution(ror_id, data.get('validation_key', ''))
         for key, value in ror_data.items():
-            if key in ('@context', '@id'):
+            if key in ('@context', '@id', '@type'):
                 continue
-            if key == '@type':
-                existing = data.get('@type', [])
-                if not isinstance(existing, list):
-                    existing = [existing] if existing else []
-                new_types = value if isinstance(value, list) else [value]
-                data['@type'] = list(dict.fromkeys(existing + new_types))
-            elif value is not None:
+            if value is not None:
                 data[key] = value
         print(f"{prefix}ROR data merged")
     except Exception as e:
@@ -127,13 +123,11 @@ def update(files, parsed_issue, issue, dry_run=False):
     return files
 
 
-# ── helpers ──────────────────────────────────────────────────────────────────
-
-def _basic_data(data_id, acronym, full_name, ror_id):
+def _basic_data(data_id, acronym, full_name, ror_id, types):
     d = {
         "@context":       "_context",
         "@id":            data_id,
-        "@type":          TYPES,
+        "@type":          types,
         "validation_key": acronym,
     }
     if full_name:
