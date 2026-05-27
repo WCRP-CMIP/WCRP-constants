@@ -1,7 +1,7 @@
 name: "Add/Modify: Cell Variable Type"
 description: Add or modify a cell variable type in WCRP Universe
 title: "Add/Modify: Cell Variable Type"
-labels: ['delta', 'cell_variable_type', 'Review', 'keep-open']
+labels: ['alpha', 'cell_variable_type', 'universe', 'Review', 'keep-open']
 body:
   - type: markdown
     attributes:
@@ -37,8 +37,8 @@ body:
       label: Issue Kind
       description: New or modify existing
       options:
-        - "New"
         - "Modify"
+        - "New"
       default: 0
     validations:
       required: true

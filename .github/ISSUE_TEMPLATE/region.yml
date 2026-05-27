@@ -1,7 +1,7 @@
 name: "Add/Modify: Region"
 description: Add or modify a region in WCRP Universe
 title: "Add/Modify: Region"
-labels: ['delta', 'region', 'Review', 'keep-open']
+labels: ['alpha', 'region', 'universe', 'Review', 'keep-open']
 body:
   - type: markdown
     attributes:
@@ -38,8 +38,8 @@ body:
       label: Issue Kind
       description: New or modify existing
       options:
-        - "New"
         - "Modify"
+        - "New"
       default: 0
     validations:
       required: true

@@ -4,6 +4,10 @@
 
 The following forms are available for this repository, and can be used to add or modify entries. The complete submission pipeline (if applicable) will be outlined in the section above.
 
+### Organisation & Consortium
+
+- [organisation](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=organisation.yml)
+- [consortium](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=consortium.yml)
 ### Core CVs
 
 - [activity](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=activity.yml)
@@ -37,12 +41,9 @@ The following forms are available for this repository, and can be used to add or
 - [region](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=region.yml)
 - [temporal_refinement](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=temporal_refinement.yml)
 - [truncation_method](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=truncation_method.yml)
-- [units](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=units.yml)
-- [vertical_coordinate](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=vertical_coordinate.yml)
-### Organizations
-
-- [organisation](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=organisation.yml)
-- [consortium](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=consortium.yml)
 ### Other
 
 - [cell_variable_type](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=cell_variable_type.yml)
+- [critical](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=critical.yml)
+- [units](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=units.yml)
+- [vertical_coordinate](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=vertical_coordinate.yml)

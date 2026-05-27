@@ -1,7 +1,7 @@
 name: "Add/Modify: Grid Type"
 description: Add or modify a grid type in WCRP Universe
 title: "Add/Modify: Grid Type"
-labels: ['delta', 'grid_type', 'Review', 'keep-open']
+labels: ['alpha', 'grid_type', 'universe', 'Review', 'keep-open']
 body:
   - type: markdown
     attributes:
@@ -38,8 +38,8 @@ body:
       label: Issue Kind
       description: New or modify existing
       options:
-        - "New"
         - "Modify"
+        - "New"
       default: 0
     validations:
       required: true

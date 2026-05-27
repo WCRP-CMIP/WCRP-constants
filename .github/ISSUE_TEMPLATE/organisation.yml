@@ -1,6 +1,6 @@
-name: "Add/Modify: Institution"
-description: Add or modify an institution in WCRP Universe
-title: "Add/Modify: Institution"
+name: "Add/Modify: Organisation"
+description: Add or modify an organisation in WCRP Universe
+title: "Add/Modify: Organisation"
 labels: ['alpha', 'institution', 'organisation', 'universe', 'Review', 'keep-open']
 body:
   - type: markdown
@@ -60,8 +60,8 @@ body:
       label: Issue Kind
       description: New or modify existing
       options:
-        - "New"
         - "Modify"
+        - "New"
       default: 0
     validations:
       required: true

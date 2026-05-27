@@ -1,7 +1,7 @@
 name: "Add/Modify: Model Family"
 description: Add or modify a model family in WCRP Universe
 title: "Add/Modify: Model Family"
-labels: ['delta', 'model-family', 'Review', 'keep-open']
+labels: ['alpha', 'model_family', 'universe', 'Review', 'keep-open']
 body:
   - type: markdown
     attributes:
@@ -36,8 +36,8 @@ body:
       label: Issue Kind
       description: New or modify existing
       options:
-        - "New"
         - "Modify"
+        - "New"
       default: 0
     validations:
       required: true

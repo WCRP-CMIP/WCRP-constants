@@ -1,7 +1,7 @@
 name: "Add/Modify: Arrangement"
-description: Add or modify a grid arrangement in WCRP Universe
+description: Add or modify an arrangement in WCRP Universe
 title: "Add/Modify: Arrangement"
-labels: ['delta', 'arrangement', 'Review', 'keep-open']
+labels: ['alpha', 'arrangement', 'universe', 'Review', 'keep-open']
 body:
   - type: markdown
     attributes:
@@ -38,8 +38,8 @@ body:
       label: Issue Kind
       description: New or modify existing
       options:
-        - "New"
         - "Modify"
+        - "New"
       default: 0
     validations:
       required: true
