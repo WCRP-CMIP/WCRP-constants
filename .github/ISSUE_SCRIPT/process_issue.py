@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
 Direct issue processor — called by new-issue.yml.
-Reads issue, finds handler from labels, runs it, writes files, creates PR.
+
+Routing: issue label -> GEN_ISSUE_TEMPLATE/{label}.json -> issue_category
+         -> ISSUE_SCRIPT/{issue_category}.py
+         (template filename == script filename, no indirection)
 """
 
 import os
@@ -12,8 +15,51 @@ import subprocess
 import importlib.util
 from pathlib import Path
 
-ISSUE_SCRIPT_DIR = Path(__file__).parent
-REPO_ROOT = ISSUE_SCRIPT_DIR.parent.parent  # .github/ISSUE_SCRIPT -> repo root
+ISSUE_SCRIPT_DIR  = Path(__file__).parent
+REPO_ROOT         = ISSUE_SCRIPT_DIR.parent.parent
+GEN_TEMPLATE_DIR  = REPO_ROOT / '.github' / 'GEN_ISSUE_TEMPLATE'
+
+
+def load_template_registry():
+    """
+    Build {label: issue_category} from every .json file in GEN_ISSUE_TEMPLATE.
+    The issue_category is the template filename without .yml — and must match
+    an ISSUE_SCRIPT/{issue_category}.py handler.
+    """
+    registry = {}
+    for path in GEN_TEMPLATE_DIR.glob('*.json'):
+        if path.name.startswith('_'):
+            continue
+        try:
+            meta = json.loads(path.read_text())
+        except Exception:
+            continue
+        category = meta.get('issue_category') or path.stem
+        for label in meta.get('labels', []):
+            registry[label] = category
+    return registry
+
+
+def find_handler(labels, registry):
+    """
+    Return (issue_category, handler_path) by matching issue labels against
+    the registry, then confirming the handler script exists.
+    """
+    for label in labels:
+        category = registry.get(label)
+        if category:
+            path = ISSUE_SCRIPT_DIR / f"{category}.py"
+            if path.exists():
+                return category, path
+    return None, None
+
+
+def load_handler(path):
+    spec = importlib.util.spec_from_file_location("handler", path)
+    mod  = importlib.util.module_from_spec(spec)
+    sys.path.insert(0, str(ISSUE_SCRIPT_DIR))
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def parse_issue_body(body):
@@ -34,36 +80,16 @@ def parse_issue_body(body):
     return fields
 
 
-def find_handler(labels):
-    """Return (label, path) for the first label that has a matching handler."""
-    for label in labels:
-        path = ISSUE_SCRIPT_DIR / f"{label}.py"
-        if path.exists():
-            return label, path
-    return None, None
-
-
-def load_handler(path):
-    spec = importlib.util.spec_from_file_location("handler", path)
-    mod = importlib.util.module_from_spec(spec)
-    sys.path.insert(0, str(ISSUE_SCRIPT_DIR))
-    spec.loader.exec_module(mod)
-    return mod
-
-
 def gh(*args):
-    result = subprocess.run(["gh", *args], capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"gh error: {result.stderr.strip()}")
-    return result
+    return subprocess.run(['gh', *args], capture_output=True, text=True)
 
 
 def git(cmd, check=True):
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-    if check and result.returncode != 0:
-        print(f"git error: {result.stderr.strip()}")
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    if check and r.returncode != 0:
+        print(f"git error: {r.stderr.strip()}")
         sys.exit(1)
-    return result.stdout.strip()
+    return r.stdout.strip()
 
 
 def main():
@@ -72,51 +98,52 @@ def main():
         print("ERROR: ISSUE_NUMBER not set")
         sys.exit(1)
 
-    # Fetch issue metadata
-    r = gh("issue", "view", issue_number,
-           "--json", "body,labels,author,createdAt,url")
+    # Fetch issue
+    r = gh('issue', 'view', issue_number,
+           '--json', 'body,labels,author,createdAt,url')
     if r.returncode != 0:
-        print(f"ERROR: could not fetch issue #{issue_number}")
+        print(f"ERROR: could not fetch issue #{issue_number}: {r.stderr.strip()}")
         sys.exit(1)
 
     issue_data = json.loads(r.stdout)
-    labels   = [l['name'] for l in issue_data.get('labels', [])]
-    author   = issue_data.get('author', {}).get('login', '')
-    body     = issue_data.get('body', '')
+    labels  = [l['name'] for l in issue_data.get('labels', [])]
+    author  = issue_data.get('author', {}).get('login', '')
 
     print(f"Issue #{issue_number}  labels={labels}  author={author}")
 
-    # Find handler
-    handler_name, handler_path = find_handler(labels)
+    # Load registry and find handler
+    registry = load_template_registry()
+    handler_name, handler_path = find_handler(labels, registry)
+
     if not handler_path:
         print(f"No handler found for labels {labels} — skipping")
         sys.exit(0)
 
-    print(f"Handler: {handler_name}.py")
+    print(f"Template → {handler_name}.py")
 
     # Parse body
-    parsed = parse_issue_body(body)
+    parsed = parse_issue_body(issue_data.get('body', ''))
     print(f"Fields: {list(parsed.keys())}")
 
     issue_meta = {
-        'author':      author,
-        'number':      issue_number,
-        'url':         issue_data.get('url', ''),
-        'labels':      labels,
-        'created_at':  issue_data.get('createdAt', ''),
+        'author':     author,
+        'number':     issue_number,
+        'url':        issue_data.get('url', ''),
+        'labels':     labels,
+        'created_at': issue_data.get('createdAt', ''),
     }
 
     # Run handler
     handler = load_handler(handler_path)
-
     files = handler.run(parsed, issue_meta)
+
     if files is None:
         print("Handler run() returned None — validation failed")
         sys.exit(1)
 
     files = handler.update(files, parsed, issue_meta)
 
-    # Write files to repo
+    # Write files
     written = []
     for file_path, data in files.items():
         if file_path.startswith('_'):
@@ -130,21 +157,19 @@ def main():
         written.append(file_path)
 
     if not written:
-        print("No files written — nothing to PR")
+        print("No files written")
         sys.exit(1)
 
     if not files.get('_make_pull', True):
-        print("_make_pull=False — skipping PR")
         sys.exit(0)
 
     # Create branch + PR targeting src-data
     branch = f"issue_{handler_name}_{issue_number}"
-    git(f"git config user.name 'cmip-ipo'")
-    git(f"git config user.email 'actions@wcrp-cmip.org'")
-
-    # Ensure we're on src-data or create branch from it
-    git(f"git fetch origin src-data || true", check=False)
-    git(f"git checkout -b {branch} origin/src-data 2>/dev/null || git checkout -b {branch}", check=False)
+    git("git config user.name 'cmip-ipo'")
+    git("git config user.email 'actions@wcrp-cmip.org'")
+    git(f"git fetch origin src-data 2>/dev/null || true", check=False)
+    git(f"git checkout -b {branch} origin/src-data 2>/dev/null "
+        f"|| git checkout -b {branch}", check=False)
 
     for fp in written:
         git(f"git add {REPO_ROOT / fp}")
@@ -153,15 +178,15 @@ def main():
     git(f"git push origin {branch}")
 
     contributors = files.get('_contributors', [])
-    body_lines = [f"Closes #{issue_number}", f"\nSubmitted by @{author}"]
+    pr_body = f"Closes #{issue_number}\n\nSubmitted by @{author}"
     if contributors:
-        body_lines.append(f"Contributors: {', '.join('@' + c for c in contributors)}")
+        pr_body += f"\nContributors: {', '.join('@' + c for c in contributors)}"
 
-    gh("pr", "create",
-       "--title", f"Add {handler_name} (Issue #{issue_number})",
-       "--body", "\n".join(body_lines),
-       "--head", branch,
-       "--base", "src-data")
+    gh('pr', 'create',
+       '--title', f"Add {handler_name} (Issue #{issue_number})",
+       '--body',  pr_body,
+       '--head',  branch,
+       '--base',  'src-data')
 
 
 if __name__ == '__main__':
