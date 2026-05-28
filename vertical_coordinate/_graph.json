@@ -28,6 +28,7 @@
     {"@id": "sea-water-pressure"},
     {"@id": "ocean-s-coordinate-g2"},
     {"@id": "z-star"},
-    {"@id": "air-pressure"}
+    {"@id": "air-pressure"},
+    {"@id": "ocean-hybrid-z-star-isopycnic-coordinate"}
   ]
 }
