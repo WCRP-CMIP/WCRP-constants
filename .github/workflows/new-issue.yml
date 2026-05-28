@@ -37,6 +37,9 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Install CMIPLD
+        uses: WCRP-CMIP/CMIPLD/actions/cmipld@main
+
       - name: Filter labels
         id: filter_labels
         env:
