@@ -1,0 +1,11 @@
+{
+  "@context": "_context",
+  "@id": "metno",
+  "@type": [
+    "wcrp:organisation",
+    "wcrp:institution"
+  ],
+  "validation_key": "METNO",
+  "ui_label": "Norwegian Meteorological Institute",
+  "ror": "001n36p86"
+}
