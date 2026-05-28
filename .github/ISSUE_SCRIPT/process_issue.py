@@ -20,12 +20,6 @@ GEN_TEMPLATE_DIR  = REPO_ROOT / '.github' / 'GEN_ISSUE_TEMPLATE'
 
 
 def load_template_registry():
-    """
-    Build {issue_category: meta} from every .json in GEN_ISSUE_TEMPLATE.
-    Each meta has: handler_path, folder, types.
-    issue_category = template filename = ISSUE_SCRIPT filename (no ext).
-    folder_tag     = destination folder (may differ — e.g. consortium -> organisation/)
-    """
     registry = {}
     for path in GEN_TEMPLATE_DIR.glob('*.json'):
         if path.name.startswith('_'):
@@ -49,51 +43,43 @@ def load_template_registry():
 
 
 def find_handler(labels, registry):
-    """
-    Match an issue label to a known issue_category in the registry.
-    Returns (category, meta) or (None, None).
-    """
     for label in labels:
-        if label in registry:
-            return label, registry[label]
+        # labels may contain hyphens; registry keys use underscores
+        key = label.replace('-', '_')
+        if key in registry:
+            return key, registry[key]
     return None, None
 
 
 def load_handler(path):
     """
-    Load a handler by executing its file in a namespace.
-    Avoids importing and polluting sys.path (which breaks things like 
-    calendar.py shadowing Python's built-in calendar module).
+    Execute handler file in an isolated namespace.
+    Avoids sys.path pollution (e.g. calendar.py shadowing the built-in).
     """
     namespace = {
-        '__file__': str(path),
-        '__name__': 'handler_module',
+        '__file__':     str(path),
+        '__name__':     'handler_module',
         '__builtins__': __builtins__,
     }
-    
-    # Add ISSUE_SCRIPT dir to path temporarily for relative imports
     sys.path.insert(0, str(ISSUE_SCRIPT_DIR))
-    
     try:
         with open(path) as f:
             exec(f.read(), namespace)
     finally:
         sys.path.pop(0)
-    
+
     class Handler:
-        """Wrapper to provide run/update functions."""
         @staticmethod
         def run(*args, **kwargs):
             return namespace['run'](*args, **kwargs)
         @staticmethod
         def update(*args, **kwargs):
             return namespace['update'](*args, **kwargs)
-    
+
     return Handler()
 
 
 def parse_issue_body(body):
-    """Parse GitHub issue form body (### headers) into a normalised dict."""
     fields = {}
     if not body:
         return fields
@@ -128,7 +114,6 @@ def main():
         print("ERROR: ISSUE_NUMBER not set")
         sys.exit(1)
 
-    # Fetch issue
     r = gh('issue', 'view', issue_number,
            '--json', 'body,labels,author,createdAt,url')
     if r.returncode != 0:
@@ -141,7 +126,6 @@ def main():
 
     print(f"Issue #{issue_number}  labels={labels}  author={author}")
 
-    # Load registry and find handler
     registry = load_template_registry()
     handler_name, meta = find_handler(labels, registry)
 
@@ -151,7 +135,6 @@ def main():
 
     print(f"Template → {handler_name}.py  folder={meta['folder']}  types={meta['types']}")
 
-    # Parse body
     parsed = parse_issue_body(issue_data.get('body', ''))
     print(f"Fields: {list(parsed.keys())}")
 
@@ -166,9 +149,8 @@ def main():
         'category':   handler_name,
     }
 
-    # Run handler
     handler = load_handler(meta['handler'])
-    files = handler.run(parsed, issue_meta)
+    files   = handler.run(parsed, issue_meta)
 
     if files is None:
         print("Handler run() returned None — validation failed")
@@ -176,7 +158,7 @@ def main():
 
     files = handler.update(files, parsed, issue_meta)
 
-    # Write files to repo
+    # Write files
     written = []
     for file_path, data in files.items():
         if file_path.startswith('_'):
@@ -196,30 +178,41 @@ def main():
     if not files.get('_make_pull', True):
         sys.exit(0)
 
-    # Create branch + PR targeting src-data
+    # Branch + PR targeting src-data
     branch = f"issue_{handler_name}_{issue_number}"
     git("git config user.name 'cmip-ipo'")
     git("git config user.email 'actions@wcrp-cmip.org'")
-    git(f"git fetch origin src-data 2>/dev/null || true", check=False)
-    git(f"git checkout -b {branch} origin/src-data 2>/dev/null "
-        f"|| git checkout -b {branch}", check=False)
+    git("git fetch origin src-data 2>/dev/null || true", check=False)
+    git(f"git fetch origin {branch} 2>/dev/null || true", check=False)
+
+    # Reset onto existing remote branch, or create fresh from src-data
+    branch_exists = git(f"git ls-remote --heads origin {branch}", check=False).strip()
+    if branch_exists:
+        git(f"git checkout -B {branch} origin/{branch}")
+    else:
+        git(f"git checkout -b {branch} origin/src-data 2>/dev/null || git checkout -b {branch}", check=False)
 
     for fp in written:
-        git(f"git add {REPO_ROOT / fp}")
+        git(f"git add '{REPO_ROOT / fp}'")
 
-    git(f'git commit -m "Add {handler_name} from issue #{issue_number}"')
-    git(f"git push origin {branch}")
+    git(f'git commit -m "Add {handler_name} from issue #{issue_number}" --allow-empty')
+    git(f"git push --force-with-lease origin {branch}")
 
     contributors = files.get('_contributors', [])
     pr_body = f"Closes #{issue_number}\n\nSubmitted by @{author}"
     if contributors:
         pr_body += f"\nContributors: {', '.join('@' + c for c in contributors)}"
 
-    gh('pr', 'create',
-       '--title', f"Add {handler_name} (Issue #{issue_number})",
-       '--body',  pr_body,
-       '--head',  branch,
-       '--base',  'src-data')
+    # Create PR if it doesn't already exist
+    existing_pr = gh('pr', 'view', branch, '--json', 'number', '-q', '.number')
+    if existing_pr.returncode != 0:
+        gh('pr', 'create',
+           '--title', f"Add {handler_name} (Issue #{issue_number})",
+           '--body',  pr_body,
+           '--head',  branch,
+           '--base',  'src-data')
+    else:
+        print(f"PR already exists for {branch} — updated with force push")
 
 
 if __name__ == '__main__':
