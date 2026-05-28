@@ -1,5 +1,5 @@
 {
-    "validation_key": "COLA",
+    "validation_key": "AORI",
     "ui_label": "Ocean Atmosphere Systems (Germany)",
     "description": "",
     "acronyms": [],
@@ -35,5 +35,5 @@
         "universal",
         "constants"
     ],
-    "@id": "cola"
+    "@id": "aori"
 }

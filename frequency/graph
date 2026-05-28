@@ -9,21 +9,21 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "fx"},
-    {"@id": "subhrpt"},
-    {"@id": "monpt"},
-    {"@id": "dec"},
-    {"@id": "3hrpt"},
-    {"@id": "1hrcm"},
-    {"@id": "yrpt"},
-    {"@id": "6hr"},
+    {"@id": "monc"},
+    {"@id": "yr"},
     {"@id": "1hrpt"},
     {"@id": "mon"},
+    {"@id": "subhrpt"},
+    {"@id": "fx"},
+    {"@id": "day"},
+    {"@id": "yrpt"},
+    {"@id": "3hrpt"},
     {"@id": "1hr"},
-    {"@id": "monc"},
     {"@id": "6hrpt"},
-    {"@id": "yr"},
-    {"@id": "3hr"},
-    {"@id": "day"}
+    {"@id": "6hr"},
+    {"@id": "1hrcm"},
+    {"@id": "dec"},
+    {"@id": "monpt"},
+    {"@id": "3hr"}
   ]
 }

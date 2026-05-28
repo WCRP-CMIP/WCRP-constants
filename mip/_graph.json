@@ -9,9 +9,9 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "cmip5"},
-    {"@id": "cmip6plus"},
     {"@id": "cmip6"},
-    {"@id": "cmip7"}
+    {"@id": "cmip7"},
+    {"@id": "cmip5"},
+    {"@id": "cmip6plus"}
   ]
 }

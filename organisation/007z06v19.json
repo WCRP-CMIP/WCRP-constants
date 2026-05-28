@@ -1,5 +1,5 @@
 {
-    "validation_key": "CGISC",
+    "validation_key": "GCISC",
     "ui_label": "Global Impact",
     "description": "",
     "acronyms": [],
@@ -36,5 +36,5 @@
         "universal",
         "constants"
     ],
-    "@id": "cgisc"
+    "@id": "gcisc"
 }

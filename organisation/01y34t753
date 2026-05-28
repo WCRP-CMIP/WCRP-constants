@@ -1,5 +1,5 @@
 {
-    "validation_key": "FIO-QLNM",
+    "validation_key": "FIO",
     "ui_label": "First Institute of Oceanography",
     "description": "",
     "acronyms": [
@@ -37,5 +37,5 @@
         "universal",
         "constants"
     ],
-    "@id": "fio-qlnm"
+    "@id": "fio"
 }

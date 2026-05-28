@@ -1,0 +1,174 @@
+name: ⟳ New Issue Processing
+
+run-name: >-
+  Issue${{ github.event.issue.number || inputs.issue_number }}
+  ${{
+    github.event_name == 'workflow_dispatch' && '(manual)' ||
+    github.event.action == 'edited' && '(edit)' ||
+    '(new)'
+  }}
+
+on:
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to process'
+        required: true
+        type: string
+
+permissions:
+  issues: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  process-issue:
+    name: Issue${{ github.event.issue.number || inputs.issue_number }} processing
+    runs-on: ubuntu-latest
+    outputs:
+      pr_number:       ${{ steps.find_pr.outputs.pr_number }}
+      labels_filtered: ${{ steps.filter_labels.outputs.filtered }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Install CMIPLD
+        uses: WCRP-CMIP/CMIPLD/actions/cmipld@main
+
+      - name: Filter labels
+        id: filter_labels
+        env:
+          LABELS_JSON: ${{ toJSON(github.event.issue.labels.*.name) }}
+        run: |
+          FILTERED=$(printf '%s' "${LABELS_JSON:-[]}" | python3 -c "
+          import json, sys
+          try:
+              labels = json.load(sys.stdin) or []
+          except json.JSONDecodeError:
+              labels = []
+          kept = [l for l in labels if '_' in l and l != 'pull_req']
+          print('|'.join(kept))
+          ")
+          echo "filtered=$FILTERED" >> "$GITHUB_OUTPUT"
+        shell: bash
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          pip install cmipld requests
+        shell: bash
+
+      - name: Configure Git
+        run: |
+          git config user.name "cmip-ipo"
+          git config user.email "actions@wcrp-cmip.org"
+          git config push.default simple
+        shell: bash
+
+      - name: Process issue
+        env:
+          ISSUE_NUMBER:      ${{ github.event.inputs.issue_number || github.event.issue.number }}
+          GH_TOKEN:          ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          GITHUB_TOKEN:      ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 .github/ISSUE_SCRIPT/process_issue.py
+        shell: bash
+
+      - name: Find PR for this issue
+        id: find_pr
+        env:
+          GH_TOKEN:     ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
+          REPO:         ${{ github.repository }}
+        run: |
+          PATTERN="_${ISSUE_NUMBER}_|[-_]${ISSUE_NUMBER}\$"
+          PR_NUMBER=""
+          for attempt in $(seq 1 4); do
+            PR_NUMBER=$(gh pr list --repo "$REPO" --state open \
+              --limit 200 \
+              --json number,headRefName \
+              --jq "[.[] | select(.headRefName | test(\"$PATTERN\"))] | .[0].number" \
+              2>/dev/null || true)
+            if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ]; then
+              break
+            fi
+            sleep 2
+          done
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "pr_number=" >> "$GITHUB_OUTPUT"
+          else
+            echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+            PR_URL=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json url --jq '.url')
+            echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
+      - name: Add changes-made label if changes-requested exists
+        if: >
+          steps.find_pr.outputs.pr_number != '' &&
+          github.event.action == 'edited'
+        env:
+          GH_TOKEN:     ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+          REPO:         ${{ github.repository }}
+          PR_NUMBER:    ${{ steps.find_pr.outputs.pr_number }}
+          ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          EDITOR:       ${{ github.event.sender.login }}
+        run: |
+          if [ "$EDITOR" != "$ISSUE_AUTHOR" ]; then exit 0; fi
+          HAS_CR=$(gh pr view "$PR_NUMBER" --repo "$REPO" \
+            --json labels --jq '[.labels[].name] | any(. == "changes-requested")' \
+            2>/dev/null || echo 'false')
+          if [ "$HAS_CR" != "true" ]; then exit 0; fi
+          gh label create "changes-made" --repo "$REPO" \
+            --color "5319e7" --description "Submitter has made changes" --force 2>/dev/null || true
+          gh pr    edit "$PR_NUMBER"    --repo "$REPO" --add-label "changes-made" || true
+          gh issue edit "$ISSUE_NUMBER" --repo "$REPO" --add-label "changes-made" || true
+        shell: bash
+
+  status-marker:
+    needs: process-issue
+    if: always()
+    runs-on: ubuntu-latest
+    name: >-
+      ${{
+        needs.process-issue.result == 'success' && needs.process-issue.outputs.pr_number != ''
+          && format('Issue{0}_{1} ; PR{2}',
+                    github.event.issue.number || inputs.issue_number,
+                    needs.process-issue.outputs.labels_filtered,
+                    needs.process-issue.outputs.pr_number)
+        || needs.process-issue.result == 'success'
+          && format('Issue{0}_{1} ; (no PR)',
+                    github.event.issue.number || inputs.issue_number,
+                    needs.process-issue.outputs.labels_filtered)
+        || format('Issue{0}_{1} ValidationFail',
+                  github.event.issue.number || inputs.issue_number,
+                  needs.process-issue.outputs.labels_filtered)
+      }}
+    steps:
+      - name: Record outcome
+        run: |
+          ISSUE_NUM="${{ github.event.issue.number || inputs.issue_number }}"
+          REPO_URL="${{ github.server_url }}/${{ github.repository }}"
+          echo "| **Issue** | [#${ISSUE_NUM}](${REPO_URL}/issues/${ISSUE_NUM}) |" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ needs.process-issue.result }}" = "success" ]; then
+            PR="${{ needs.process-issue.outputs.pr_number }}"
+            if [ -n "$PR" ]; then
+              echo "| **PR** | [#${PR}](${REPO_URL}/pull/${PR}) |" >> "$GITHUB_STEP_SUMMARY"
+              echo "| **Status** | ✅ PR created/updated |" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "| **Status** | ⚠️ Passed — no PR created |" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          else
+            echo "| **Status** | ❌ Validation failed |" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        shell: bash

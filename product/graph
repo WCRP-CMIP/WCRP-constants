@@ -9,9 +9,9 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "derived"},
     {"@id": "model-output"},
+    {"@id": "forcing-dataset"},
     {"@id": "observations"},
-    {"@id": "forcing-dataset"}
+    {"@id": "derived"}
   ]
 }

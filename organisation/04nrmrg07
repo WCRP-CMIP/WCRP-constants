@@ -1,5 +1,5 @@
 {
-    "validation_key": "CMA",
+    "validation_key": "KMA",
     "ui_label": "Korea Meteorological Administration",
     "description": "",
     "acronyms": [
@@ -39,5 +39,5 @@
         "universal",
         "constants"
     ],
-    "@id": "cma"
+    "@id": "kma"
 }

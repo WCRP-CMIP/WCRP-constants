@@ -1,5 +1,5 @@
 {
-    "validation_key": "MPI-BGC",
+    "validation_key": "MPI-B",
     "ui_label": "Max Planck Institute for Biogeochemistry",
     "description": "",
     "acronyms": [
@@ -9,30 +9,24 @@
         "MPI Biogeochemistry"
     ],
     "established": 1997,
-    "kind": "facility",
+    "kind": "Facility",
     "labels": [
-        "Max Planck Institute for Biogeochemistry",
         "Max-Planck-Institut für Biogeochemie"
     ],
-    "location": [
-        {
-            "continent_code": "EU",
-            "continent_name": "Europe",
-            "country_code": "DE",
-            "country_name": "Germany",
-            "country_subdivision_code": "TH",
-            "country_subdivision_name": "Thuringia",
-            "lat": 50.92878,
-            "lng": 11.5899,
-            "name": "Jena",
-            "@type": "wcrp:location",
-            "@id": "universal:location/051yxp643"
-        }
-    ],
+    "location": {
+        "city": "Jena",
+        "country": [
+            "Germany",
+            "DE"
+        ],
+        "lat": 50.92878,
+        "lon": 11.5899,
+        "@type": "esgf:location",
+        "@id": "universal:location/051yxp643"
+    },
     "ror": "051yxp643",
     "url": [
-        "https://www.bgc-jena.mpg.de",
-        "http://en.wikipedia.org/wiki/Max_Planck_Institute_for_Biogeochemistry"
+        "https://www.bgc-jena.mpg.de"
     ],
     "@context": "_context",
     "@type": [
@@ -41,5 +35,5 @@
         "universal",
         "constants"
     ],
-    "@id": "mpi-bgc"
+    "@id": "mpi-b"
 }

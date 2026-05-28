@@ -1,5 +1,5 @@
 {
-    "validation_key": "WCRP",
+    "validation_key": "WWRP",
     "ui_label": "World Climate Research Programme",
     "description": "",
     "acronyms": [
@@ -40,5 +40,5 @@
         "universal",
         "constants"
     ],
-    "@id": "wcrp"
+    "@id": "wwrp"
 }
