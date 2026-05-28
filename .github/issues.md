@@ -44,6 +44,5 @@ The following forms are available for this repository, and can be used to add or
 ### Other
 
 - [cell_variable_type](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=cell_variable_type.yml)
-- [critical](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=critical.yml)
 - [units](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=units.yml)
 - [vertical_coordinate](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=vertical_coordinate.yml)
