@@ -6,14 +6,16 @@ body:
   - type: markdown
     attributes:
       value: |
-        # Add/Modify: Calendar
+        ## Add/Modify: Calendar
+        
+        Calendar types for climate model data.
 
   - type: input
     id: validation_key
     attributes:
       label: Validation Key
-      description: Unique identifier (lowercase, hyphens only)
-      placeholder: e.g. gregorian
+      description: Unique identifier (lowercase)
+      placeholder: "e.g. standard"
     validations:
       required: true
 
@@ -21,33 +23,38 @@ body:
     id: ui_label
     attributes:
       label: UI Label
-      description: Human-readable display name
-      placeholder: e.g. Gregorian
-    validations:
-      required: false
+      description: Display name
+      placeholder: "e.g. Standard (Gregorian)"
 
-  - type: input
+  - type: textarea
     id: description
     attributes:
       label: Description
-      placeholder: Brief description
-    validations:
-      required: false
+      description: Detailed description
+
+  - type: input
+    id: alias
+    attributes:
+      label: Aliases
+      description: Alternative names (comma-separated)
+      placeholder: "e.g. gregorian"
 
   - type: dropdown
     id: issue_kind
     attributes:
       label: Issue Kind
+      description: New or modify existing
       options:
-        - New
-        - Modify
+        - "Modify"
+        - "New"
+      default: 0
     validations:
       required: true
 
   - type: input
-    id: additional_collaborators
+    id: collaborators
     attributes:
       label: Additional Collaborators
-      placeholder: GitHub usernames, comma-separated
-    validations:
-      required: false
+      description: |
+        To add attribution to additional members include their GitHub usernames (only) separated by a comma.
+      placeholder: "e.g. user1"
