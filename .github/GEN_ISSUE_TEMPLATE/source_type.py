@@ -1,10 +1,10 @@
-# Source Type Template Configuration
+# Add/Modify: Source Type Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Source Type',
     'description': 'Add or modify a source type in WCRP Universe',
     'title': 'Add/Modify: Source Type',
-    'labels': ['delta', 'source-type', 'Review', 'keep-open'],
+    'labels': ['alpha', 'source_type', 'universe', 'Review', 'keep-open'],
     'issue_category': 'source_type'
 }
 

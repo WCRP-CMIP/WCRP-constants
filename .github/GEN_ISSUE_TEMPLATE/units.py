@@ -1,13 +1,14 @@
-# Units Template Configuration
+# Add/Modify: Units Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Units',
-    'description': 'Add or modify a unit definition in WCRP Universe',
+    'description': 'Add or modify units in WCRP Universe',
     'title': 'Add/Modify: Units',
-    'labels': ['delta', 'units', 'Review', 'keep-open'],
+    'labels': ['alpha', 'units', 'universe', 'Review', 'keep-open'],
     'issue_category': 'units'
 }
 
+# Data for this template
 DATA = {
     'issue_kind': ['New', 'Modify']
 }

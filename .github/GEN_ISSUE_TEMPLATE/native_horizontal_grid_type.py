@@ -1,10 +1,10 @@
-# Native Horizontal Grid Type Template Configuration
+# Add/Modify: Native Horizontal Grid Type Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Native Horizontal Grid Type',
     'description': 'Add or modify a native horizontal grid type in WCRP Universe',
     'title': 'Add/Modify: Native Horizontal Grid Type',
-    'labels': ['delta', 'grid-type', 'Review', 'keep-open'],
+    'labels': ['alpha', 'native_horizontal_grid_type', 'universe', 'Review', 'keep-open'],
     'issue_category': 'native_horizontal_grid_type'
 }
 

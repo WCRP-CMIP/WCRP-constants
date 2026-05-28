@@ -1,10 +1,10 @@
-# Resolution Template Configuration
+# Add/Modify: Resolution Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Resolution',
     'description': 'Add or modify a resolution in WCRP Universe',
     'title': 'Add/Modify: Resolution',
-    'labels': ['delta', 'resolution', 'Review', 'keep-open'],
+    'labels': ['alpha', 'resolution', 'universe', 'Review', 'keep-open'],
     'issue_category': 'resolution'
 }
 

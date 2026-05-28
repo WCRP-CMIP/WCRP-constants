@@ -1,10 +1,10 @@
-# Product Template Configuration
+# Add/Modify: Product Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Product',
-    'description': 'Add or modify a product type in WCRP Universe',
+    'description': 'Add or modify a product in WCRP Universe',
     'title': 'Add/Modify: Product',
-    'labels': ['delta', 'product', 'Review', 'keep-open'],
+    'labels': ['alpha', 'product', 'universe', 'Review', 'keep-open'],
     'issue_category': 'product'
 }
 

@@ -1,10 +1,10 @@
-# Model Component Type Template Configuration
+# Add/Modify: Model Component Type Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Model Component Type',
     'description': 'Add or modify a model component type in WCRP Universe',
     'title': 'Add/Modify: Model Component Type',
-    'labels': ['delta', 'model-component-type', 'Review', 'keep-open'],
+    'labels': ['alpha', 'model_component_type', 'universe', 'Review', 'keep-open'],
     'issue_category': 'model_component_type'
 }
 

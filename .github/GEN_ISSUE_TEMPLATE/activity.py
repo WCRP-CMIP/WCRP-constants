@@ -1,10 +1,10 @@
-# Activity Template Configuration
+# Add/Modify: Activity Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Activity',
     'description': 'Add or modify an activity in WCRP Universe',
     'title': 'Add/Modify: Activity',
-    'labels': ['delta', 'activity', 'Review', 'keep-open'],
+    'labels': ['alpha', 'activity', 'universe', 'Review', 'keep-open'],
     'issue_category': 'activity'
 }
 

@@ -1,10 +1,10 @@
-# Model Family Template Configuration
+# Add/Modify: Model Family Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Model Family',
     'description': 'Add or modify a model family in WCRP Universe',
     'title': 'Add/Modify: Model Family',
-    'labels': ['delta', 'model-family', 'Review', 'keep-open'],
+    'labels': ['alpha', 'model_family', 'universe', 'Review', 'keep-open'],
     'issue_category': 'model_family'
 }
 

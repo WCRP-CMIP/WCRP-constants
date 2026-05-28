@@ -1,10 +1,10 @@
-# Frequency Template Configuration
+# Add/Modify: Frequency Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Frequency',
     'description': 'Add or modify a frequency in WCRP Universe',
     'title': 'Add/Modify: Frequency',
-    'labels': ['delta', 'frequency', 'Review', 'keep-open'],
+    'labels': ['alpha', 'frequency', 'universe', 'Review', 'keep-open'],
     'issue_category': 'frequency'
 }
 

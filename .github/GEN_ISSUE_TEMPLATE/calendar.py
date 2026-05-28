@@ -1,13 +1,14 @@
-# Calendar Template Configuration
+# Add/Modify: Calendar Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Calendar',
-    'description': 'Add or modify a calendar type in WCRP Universe',
+    'description': 'Add or modify a calendar in WCRP Universe',
     'title': 'Add/Modify: Calendar',
-    'labels': ['delta', 'calendar', 'Review', 'keep-open'],
+    'labels': ['alpha', 'calendar', 'universe', 'Review', 'keep-open'],
     'issue_category': 'calendar'
 }
 
+# Data for this template
 DATA = {
     'issue_kind': ['New', 'Modify']
 }

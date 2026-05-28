@@ -1,10 +1,10 @@
-# Model Calendar Template Configuration
+# Add/Modify: Model Calendar Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Model Calendar',
     'description': 'Add or modify a model calendar in WCRP Universe',
     'title': 'Add/Modify: Model Calendar',
-    'labels': ['delta', 'model-calendar', 'Review', 'keep-open'],
+    'labels': ['alpha', 'model_calendar', 'universe', 'Review', 'keep-open'],
     'issue_category': 'model_calendar'
 }
 

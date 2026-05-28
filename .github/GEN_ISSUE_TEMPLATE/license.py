@@ -1,10 +1,10 @@
-# License Template Configuration
+# Add/Modify: License Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: License',
     'description': 'Add or modify a license in WCRP Universe',
     'title': 'Add/Modify: License',
-    'labels': ['delta', 'license', 'Review', 'keep-open'],
+    'labels': ['alpha', 'license', 'universe', 'Review', 'keep-open'],
     'issue_category': 'license'
 }
 

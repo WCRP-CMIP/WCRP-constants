@@ -1,10 +1,10 @@
-# MIP Template Configuration
+# Add/Modify: MIP Template Configuration
 
 TEMPLATE_CONFIG = {
     'name': 'Add/Modify: MIP',
     'description': 'Add or modify a MIP in WCRP Universe',
     'title': 'Add/Modify: MIP',
-    'labels': ['delta', 'mip', 'Review', 'keep-open'],
+    'labels': ['alpha', 'mip', 'universe', 'Review', 'keep-open'],
     'issue_category': 'mip'
 }
 
