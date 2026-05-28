@@ -1,11 +1,42 @@
 {
-  "@context": "_context",
   "@id": "metno",
   "@type": [
     "wcrp:organisation",
     "wcrp:institution"
   ],
-  "validation_key": "METNO",
+  "acronyms": [
+    "MET"
+  ],
+  "aliases": [
+    "MET Norway"
+  ],
+  "established": 1866,
+  "kind": "government",
+  "labels": [
+    "Meteorologisk institutt",
+    "Norwegian Meteorological Institute"
+  ],
+  "location": [
+    {
+      "@id": "universal:location/001n36p86",
+      "@type": "wcrp:location",
+      "lat": 59.91273,
+      "lng": 10.74609,
+      "name": "Oslo",
+      "country_code": "NO",
+      "country_name": "Norway",
+      "country_subdivision_code": "03",
+      "country_subdivision_name": "Oslo",
+      "continent_code": "EU",
+      "continent_name": "Europe"
+    }
+  ],
+  "ror": "001n36p86",
   "ui_label": "Norwegian Meteorological Institute",
-  "ror": "001n36p86"
+  "url": [
+    "http://met.no",
+    "https://en.wikipedia.org/wiki/Norwegian_Meteorological_Institute"
+  ],
+  "validation_key": "METNO",
+  "@context": "_context"
 }
