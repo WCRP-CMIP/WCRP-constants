@@ -62,8 +62,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install requests
+      - name: Install Python dependencies
+        run: |
+          pip install cmipld requests
+        shell: bash
 
       - name: Configure Git
         run: |
