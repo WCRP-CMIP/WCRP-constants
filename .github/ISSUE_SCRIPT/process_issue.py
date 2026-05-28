@@ -44,7 +44,6 @@ def load_template_registry():
 
 def find_handler(labels, registry):
     for label in labels:
-        # labels may contain hyphens; registry keys use underscores
         key = label.replace('-', '_')
         if key in registry:
             return key, registry[key]
@@ -52,10 +51,7 @@ def find_handler(labels, registry):
 
 
 def load_handler(path):
-    """
-    Execute handler file in an isolated namespace.
-    Avoids sys.path pollution (e.g. calendar.py shadowing the built-in).
-    """
+    """Execute handler in an isolated namespace — avoids sys.path pollution."""
     namespace = {
         '__file__':     str(path),
         '__name__':     'handler_module',
@@ -149,6 +145,7 @@ def main():
         'category':   handler_name,
     }
 
+    # Run handler — produces the data to write
     handler = load_handler(meta['handler'])
     files   = handler.run(parsed, issue_meta)
 
@@ -158,7 +155,23 @@ def main():
 
     files = handler.update(files, parsed, issue_meta)
 
-    # Write files
+    # ── Checkout target branch BEFORE writing files ───────────────────────────
+    # If we write first and then checkout, git resets the working tree and
+    # overwrites/deletes the files we just wrote.
+    branch = f"issue_{handler_name}_{issue_number}"
+    git("git config user.name 'cmip-ipo'")
+    git("git config user.email 'actions@wcrp-cmip.org'")
+    git("git fetch origin src-data 2>/dev/null || true", check=False)
+    git(f"git fetch origin {branch} 2>/dev/null || true", check=False)
+
+    branch_exists = git(f"git ls-remote --heads origin {branch}", check=False).strip()
+    if branch_exists:
+        git(f"git checkout -B {branch} origin/{branch}")
+    else:
+        git(f"git checkout -b {branch} origin/src-data 2>/dev/null "
+            f"|| git checkout -b {branch}", check=False)
+
+    # ── Now write files into the checked-out branch ───────────────────────────
     written = []
     for file_path, data in files.items():
         if file_path.startswith('_'):
@@ -178,32 +191,19 @@ def main():
     if not files.get('_make_pull', True):
         sys.exit(0)
 
-    # Branch + PR targeting src-data
-    branch = f"issue_{handler_name}_{issue_number}"
-    git("git config user.name 'cmip-ipo'")
-    git("git config user.email 'actions@wcrp-cmip.org'")
-    git("git fetch origin src-data 2>/dev/null || true", check=False)
-    git(f"git fetch origin {branch} 2>/dev/null || true", check=False)
-
-    # Reset onto existing remote branch, or create fresh from src-data
-    branch_exists = git(f"git ls-remote --heads origin {branch}", check=False).strip()
-    if branch_exists:
-        git(f"git checkout -B {branch} origin/{branch}")
-    else:
-        git(f"git checkout -b {branch} origin/src-data 2>/dev/null || git checkout -b {branch}", check=False)
-
+    # ── Commit and push ───────────────────────────────────────────────────────
     for fp in written:
         git(f"git add '{REPO_ROOT / fp}'")
 
     git(f'git commit -m "Add {handler_name} from issue #{issue_number}" --allow-empty')
     git(f"git push --force-with-lease origin {branch}")
 
+    # Create PR if none exists yet
     contributors = files.get('_contributors', [])
     pr_body = f"Closes #{issue_number}\n\nSubmitted by @{author}"
     if contributors:
         pr_body += f"\nContributors: {', '.join('@' + c for c in contributors)}"
 
-    # Create PR if it doesn't already exist
     existing_pr = gh('pr', 'view', branch, '--json', 'number', '-q', '.number')
     if existing_pr.returncode != 0:
         gh('pr', 'create',

@@ -9,19 +9,31 @@ import json
 from difflib import SequenceMatcher
 
 
-# ── ROR fetch (inlined from update_ror to avoid same-folder imports) ──────────
+# ── helpers ───────────────────────────────────────────────────────────────────
+
+def _clean(d):
+    """Recursively remove None values and empty lists/dicts."""
+    if isinstance(d, dict):
+        return {k: _clean(v) for k, v in d.items()
+                if v is not None and v != [] and v != {}}
+    if isinstance(d, list):
+        cleaned = [_clean(i) for i in d]
+        return [i for i in cleaned if i is not None and i != {} and i != []]
+    return d
+
+
+# ── ROR fetch ─────────────────────────────────────────────────────────────────
 
 def _get_ror_data(ror_id, acronym, types):
     """
     Fetch full institution data from ROR API v2.
-    Returns a complete structured dict matching the institution JSON-LD schema.
+    Returns a complete, clean structured dict matching the institution JSON-LD schema.
     """
     import cmipld
     from cmipld.utils.jsontools import sort_json_keys
 
     url = f'https://api.ror.org/v2/organizations/{ror_id}'
-    ror  = cmipld.utils.read_url(url)
-
+    ror = cmipld.utils.read_url(url)
     assert ror, f"No ROR data found for {ror_id} at {url}"
 
     cmip_id = acronym.lower().replace('_', '-').replace(' ', '-')
@@ -47,21 +59,21 @@ def _get_ror_data(ror_id, acronym, types):
         "aliases":        [n['value'] for n in names if 'alias'   in n.get('types', [])],
         "acronyms":       [n['value'] for n in names if 'acronym' in n.get('types', [])],
         "location": [{
-            "@id":                       f"universal:location/{ror['id'].split('/')[-1]}",
-            "@type":                     "wcrp:location",
-            "lat":                       loc.get('lat'),
-            "lng":                       loc.get('lng'),
-            "name":                      loc.get('name'),
-            "country_code":              loc.get('country_code'),
-            "country_name":              loc.get('country_name'),
-            "country_subdivision_code":  loc.get('country_subdivision_code'),
-            "country_subdivision_name":  loc.get('country_subdivision_name'),
-            "continent_code":            loc.get('continent_code'),
-            "continent_name":            loc.get('continent_name'),
+            "@id":                      f"universal:location/{ror['id'].split('/')[-1]}",
+            "@type":                    "wcrp:location",
+            "lat":                      loc.get('lat'),
+            "lng":                      loc.get('lng'),
+            "name":                     loc.get('name'),
+            "country_code":             loc.get('country_code'),
+            "country_name":             loc.get('country_name'),
+            "country_subdivision_code": loc.get('country_subdivision_code'),
+            "country_subdivision_name": loc.get('country_subdivision_name'),
+            "continent_code":           loc.get('continent_code'),
+            "continent_name":           loc.get('continent_name'),
         }],
     }
 
-    return sort_json_keys(result)
+    return sort_json_keys(_clean(result))
 
 
 def _basic_data(data_id, acronym, full_name, ror_id, types):
@@ -130,7 +142,6 @@ def run(parsed_issue, issue, dry_run=False):
                     warnings.append(
                         f"Low name similarity ({ranking:.1f}%): '{full_name}' vs '{ror_name}'"
                     )
-
         except Exception as e:
             warnings.append(f"ROR fetch failed: {e}")
             print(f"{prefix}⚠  {warnings[-1]}")
@@ -139,7 +150,6 @@ def run(parsed_issue, issue, dry_run=False):
         warnings.append("No ROR ID provided — institution data is incomplete")
         data = _basic_data(data_id, acronym, full_name, None, types)
 
-    # Always enforce the template-declared @type
     data['@type'] = types
 
     if not dry_run and issue_number:
@@ -158,7 +168,7 @@ def run(parsed_issue, issue, dry_run=False):
 
 
 def update(files, parsed_issue, issue, dry_run=False):
-    """Re-enrich from ROR if location data is missing."""
+    """Re-fetch full ROR data if location is missing from a previous run."""
     prefix = "[DRY RUN] " if dry_run else ""
     types  = issue.get('types', ['wcrp:organisation', 'wcrp:institution'])
 
@@ -178,10 +188,9 @@ def update(files, parsed_issue, issue, dry_run=False):
         return files
 
     try:
-        acronym  = data.get('validation_key', data.get('@id', ''))
-        enriched = _get_ror_data(ror_id, acronym, types)
-        files[file_path] = enriched
-        print(f"{prefix}✓ ROR data merged — {len(enriched)} fields")
+        acronym          = data.get('validation_key', data.get('@id', ''))
+        files[file_path] = _get_ror_data(ror_id, acronym, types)
+        print(f"{prefix}✓ Full ROR data written")
     except Exception as e:
         print(f"{prefix}⚠  ROR update failed: {e}")
 
