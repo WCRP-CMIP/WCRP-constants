@@ -65,9 +65,20 @@ def load_handler(path):
     Avoids importing and polluting sys.path (which breaks things like 
     calendar.py shadowing Python's built-in calendar module).
     """
-    namespace = {}
-    with open(path) as f:
-        exec(f.read(), namespace)
+    namespace = {
+        '__file__': str(path),
+        '__name__': 'handler_module',
+        '__builtins__': __builtins__,
+    }
+    
+    # Add ISSUE_SCRIPT dir to path temporarily for relative imports
+    sys.path.insert(0, str(ISSUE_SCRIPT_DIR))
+    
+    try:
+        with open(path) as f:
+            exec(f.read(), namespace)
+    finally:
+        sys.path.pop(0)
     
     class Handler:
         """Wrapper to provide run/update functions."""

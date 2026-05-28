@@ -1,0 +1,32 @@
+def load_handler(path):
+    """
+    Load a handler by executing its file in a namespace.
+    Avoids importing and polluting sys.path (which breaks things like 
+    calendar.py shadowing Python's built-in calendar module).
+    """
+    import sys
+    namespace = {
+        '__file__': str(path),
+        '__name__': 'handler_module',
+        '__builtins__': __builtins__,
+    }
+    
+    # Add ISSUE_SCRIPT dir to path temporarily for relative imports
+    sys.path.insert(0, str(ISSUE_SCRIPT_DIR))
+    
+    try:
+        with open(path) as f:
+            exec(f.read(), namespace)
+    finally:
+        sys.path.pop(0)
+    
+    class Handler:
+        """Wrapper to provide run/update functions."""
+        @staticmethod
+        def run(*args, **kwargs):
+            return namespace['run'](*args, **kwargs)
+        @staticmethod
+        def update(*args, **kwargs):
+            return namespace['update'](*args, **kwargs)
+    
+    return Handler()
