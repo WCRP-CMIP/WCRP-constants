@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: MIP',
     'description': 'Add or modify a MIP in WCRP Universe',
     'title': 'Add/Modify: MIP',
-    'labels': ['alpha', 'mip', 'universe', 'Review', 'keep-open'],
+    'labels': ['mip'],
     'issue_category': 'mip'
 }
 

@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Scientific Domain',
     'description': 'Add or modify a scientific domain in WCRP Universe',
     'title': 'Add/Modify: Scientific Domain',
-    'labels': ['alpha', 'scientific_domain', 'universe', 'Review', 'keep-open'],
+    'labels': ['scientific_domain'],
     'issue_category': 'scientific_domain'
 }
 

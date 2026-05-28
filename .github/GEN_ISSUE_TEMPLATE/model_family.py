@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Model Family',
     'description': 'Add or modify a model family in WCRP Universe',
     'title': 'Add/Modify: Model Family',
-    'labels': ['alpha', 'model_family', 'universe', 'Review', 'keep-open'],
+    'labels': ['model_family'],
     'issue_category': 'model_family'
 }
 

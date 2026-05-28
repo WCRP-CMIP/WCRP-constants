@@ -1,1 +1,1 @@
-{"name":"Add/Modify: Model Family","description":"Add or modify a model family in WCRP Universe","title":"Add/Modify: Model Family","labels":["alpha","model_family","universe","Review","keep-open"],"folder_tag":"model_family","issue_category":"model_family"}
+{"name": "Add/Modify: Model Family", "description": "Add or modify a model family in WCRP Universe", "title": "Add/Modify: Model Family", "labels": ["model_family"], "folder_tag": "model_family", "issue_category": "model_family"}

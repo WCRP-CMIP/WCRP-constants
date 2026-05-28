@@ -12,7 +12,6 @@ import sys
 import json
 import re
 import subprocess
-import importlib.util
 from pathlib import Path
 
 ISSUE_SCRIPT_DIR  = Path(__file__).parent
@@ -61,11 +60,25 @@ def find_handler(labels, registry):
 
 
 def load_handler(path):
-    spec = importlib.util.spec_from_file_location("handler", path)
-    mod  = importlib.util.module_from_spec(spec)
-    sys.path.insert(0, str(ISSUE_SCRIPT_DIR))
-    spec.loader.exec_module(mod)
-    return mod
+    """
+    Load a handler by executing its file in a namespace.
+    Avoids importing and polluting sys.path (which breaks things like 
+    calendar.py shadowing Python's built-in calendar module).
+    """
+    namespace = {}
+    with open(path) as f:
+        exec(f.read(), namespace)
+    
+    class Handler:
+        """Wrapper to provide run/update functions."""
+        @staticmethod
+        def run(*args, **kwargs):
+            return namespace['run'](*args, **kwargs)
+        @staticmethod
+        def update(*args, **kwargs):
+            return namespace['update'](*args, **kwargs)
+    
+    return Handler()
 
 
 def parse_issue_body(body):
@@ -152,7 +165,7 @@ def main():
 
     files = handler.update(files, parsed, issue_meta)
 
-    # Write files
+    # Write files to repo
     written = []
     for file_path, data in files.items():
         if file_path.startswith('_'):

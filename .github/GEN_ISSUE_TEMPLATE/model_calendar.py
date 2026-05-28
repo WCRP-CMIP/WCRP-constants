@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Model Calendar',
     'description': 'Add or modify a model calendar in WCRP Universe',
     'title': 'Add/Modify: Model Calendar',
-    'labels': ['alpha', 'model_calendar', 'universe', 'Review', 'keep-open'],
+    'labels': ['model_calendar'],
     'issue_category': 'model_calendar'
 }
 

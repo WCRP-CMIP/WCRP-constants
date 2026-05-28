@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Native Vertical Grid Units',
     'description': 'Add or modify native vertical grid units in WCRP Universe',
     'title': 'Add/Modify: Native Vertical Grid Units',
-    'labels': ['alpha', 'native_vertical_grid_units', 'universe', 'Review', 'keep-open'],
+    'labels': ['native_vertical_grid_units'],
     'issue_category': 'native_vertical_grid_units'
 }
 

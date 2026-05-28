@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Grid Type',
     'description': 'Add or modify a grid type in WCRP Universe',
     'title': 'Add/Modify: Grid Type',
-    'labels': ['alpha', 'grid_type', 'universe', 'Review', 'keep-open'],
+    'labels': ['grid_type'],
     'issue_category': 'grid_type'
 }
 

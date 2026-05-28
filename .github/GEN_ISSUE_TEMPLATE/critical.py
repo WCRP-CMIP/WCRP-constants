@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Critical',
     'description': 'Add or modify a critical entry in WCRP Universe',
     'title': 'Add/Modify: Critical',
-    'labels': ['alpha', 'critical', 'universe', 'Review', 'keep-open'],
+    'labels': ['critical'],
     'issue_category': 'critical'
 }
 

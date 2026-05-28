@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Model Component Type',
     'description': 'Add or modify a model component type in WCRP Universe',
     'title': 'Add/Modify: Model Component Type',
-    'labels': ['alpha', 'model_component_type', 'universe', 'Review', 'keep-open'],
+    'labels': ['model_component_type'],
     'issue_category': 'model_component_type'
 }
 

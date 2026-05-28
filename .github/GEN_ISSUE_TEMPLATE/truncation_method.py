@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Truncation Method',
     'description': 'Add or modify a truncation method in WCRP Universe',
     'title': 'Add/Modify: Truncation Method',
-    'labels': ['alpha', 'truncation_method', 'universe', 'Review', 'keep-open'],
+    'labels': ['truncation_method'],
     'issue_category': 'truncation_method'
 }
 

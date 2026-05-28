@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Grid Mapping',
     'description': 'Add or modify a grid mapping in WCRP Universe',
     'title': 'Add/Modify: Grid Mapping',
-    'labels': ['alpha', 'grid_mapping', 'universe', 'Review', 'keep-open'],
+    'labels': ['grid_mapping'],
     'issue_category': 'grid_mapping'
 }
 

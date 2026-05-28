@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Realm',
     'description': 'Add or modify a realm in WCRP Universe',
     'title': 'Add/Modify: Realm',
-    'labels': ['alpha', 'realm', 'universe', 'Review', 'keep-open'],
+    'labels': ['realm'],
     'issue_category': 'realm'
 }
 

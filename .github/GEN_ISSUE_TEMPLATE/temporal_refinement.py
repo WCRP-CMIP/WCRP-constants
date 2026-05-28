@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Temporal Refinement',
     'description': 'Add or modify a temporal refinement in WCRP Universe',
     'title': 'Add/Modify: Temporal Refinement',
-    'labels': ['alpha', 'temporal_refinement', 'universe', 'Review', 'keep-open'],
+    'labels': ['temporal_refinement'],
     'issue_category': 'temporal_refinement'
 }
 

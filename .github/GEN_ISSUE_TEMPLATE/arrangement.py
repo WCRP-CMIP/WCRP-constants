@@ -4,7 +4,7 @@ TEMPLATE_CONFIG = {
     'name': 'Add/Modify: Arrangement',
     'description': 'Add or modify an arrangement in WCRP Universe',
     'title': 'Add/Modify: Arrangement',
-    'labels': ['alpha', 'arrangement', 'universe', 'Review', 'keep-open'],
+    'labels': ['arrangement'],
     'issue_category': 'arrangement'
 }
 
