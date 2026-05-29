@@ -1,39 +1,39 @@
 {
-    "validation_key": "CCCma",
-    "ui_label": "Climate Modelling Laboratory",
-    "description": "",
-    "acronyms": [],
-    "aliases": [],
-    "established": null,
-    "kind": "facility",
-    "labels": [
-        "Climate Modelling Laboratory"
-    ],
-    "location": [
-        {
-            "continent_code": "OC",
-            "continent_name": "Oceania",
-            "country_code": "AU",
-            "country_name": "Australia",
-            "country_subdivision_code": "QLD",
-            "country_subdivision_name": "Queensland",
-            "lat": -26.39433,
-            "lng": 153.0901,
-            "name": "Noosa",
-            "@type": "wcrp:location",
-            "@id": "universal:location/01ge8wp14"
-        }
-    ],
-    "ror": "01ge8wp14",
-    "url": [
-        "https://climatelab.com.au/"
-    ],
-    "@context": "_context",
-    "@type": [
-        "wcrp:organisation",
-        "esgvoc:Organisation",
-        "universal",
-        "constants"
-    ],
-    "@id": "cccma"
+  "@id": "cccma",
+  "@type": [
+    "wcrp:organisation",
+    "wcrp:institution"
+  ],
+  "acronyms": [
+    "ECCC"
+  ],
+  "established": 1971,
+  "kind": "funder",
+  "labels": [
+    "Environment and Climate Change Canada",
+    "Environnement et Changement Climatique Canada"
+  ],
+  "location": [
+    {
+      "@id": "universal:location/026ny0e17",
+      "@type": "wcrp:location",
+      "lat": 45.41117,
+      "lng": -75.69812,
+      "name": "Ottawa",
+      "country_code": "CA",
+      "country_name": "Canada",
+      "country_subdivision_code": "ON",
+      "country_subdivision_name": "Ontario",
+      "continent_code": "NA",
+      "continent_name": "North America"
+    }
+  ],
+  "ror": "026ny0e17",
+  "ui_label": "Environment and Climate Change Canada",
+  "url": [
+    "https://www.canada.ca/en/environment-climate-change.html",
+    "https://en.wikipedia.org/wiki/Environment_and_Climate_Change_Canada"
+  ],
+  "validation_key": "CCCma",
+  "@context": "_context"
 }
