@@ -1,42 +1,44 @@
 {
-  "@id": "metno",
-  "@type": [
-    "wcrp:organisation",
-    "wcrp:institution"
-  ],
-  "acronyms": [
-    "MET"
-  ],
-  "aliases": [
-    "MET Norway"
-  ],
-  "established": 1866,
-  "kind": "government",
-  "labels": [
-    "Meteorologisk institutt",
-    "Norwegian Meteorological Institute"
-  ],
-  "location": [
-    {
-      "@id": "universal:location/001n36p86",
-      "@type": "wcrp:location",
-      "lat": 59.91273,
-      "lng": 10.74609,
-      "name": "Oslo",
-      "country_code": "NO",
-      "country_name": "Norway",
-      "country_subdivision_code": "03",
-      "country_subdivision_name": "Oslo",
-      "continent_code": "EU",
-      "continent_name": "Europe"
-    }
-  ],
-  "ror": "001n36p86",
-  "ui_label": "Norwegian Meteorological Institute",
-  "url": [
-    "http://met.no",
-    "https://en.wikipedia.org/wiki/Norwegian_Meteorological_Institute"
-  ],
-  "validation_key": "METNO",
-  "@context": "_context"
+    "validation_key": "METNO",
+    "ui_label": "Norwegian Meteorological Institute",
+    "description": "",
+    "acronyms": [
+        "MET"
+    ],
+    "aliases": [
+        "MET Norway"
+    ],
+    "established": 1866,
+    "kind": "government",
+    "labels": [
+        "Meteorologisk institutt",
+        "Norwegian Meteorological Institute"
+    ],
+    "location": [
+        {
+            "continent_code": "EU",
+            "continent_name": "Europe",
+            "country_code": "NO",
+            "country_name": "Norway",
+            "country_subdivision_code": "03",
+            "country_subdivision_name": "Oslo",
+            "lat": 59.91273,
+            "lng": 10.74609,
+            "name": "Oslo",
+            "@type": "wcrp:location",
+            "@id": "universal:location/001n36p86"
+        }
+    ],
+    "ror": "001n36p86",
+    "url": [
+        "http://met.no",
+        "https://en.wikipedia.org/wiki/Norwegian_Meteorological_Institute"
+    ],
+    "@context": "_context",
+    "@type": [
+        "wcrp:organisation",
+        "esgvoc:Organisation",
+        "constants"
+    ],
+    "@id": "metno"
 }
