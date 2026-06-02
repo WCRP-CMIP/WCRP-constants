@@ -1,8 +1,0 @@
-{
-    "@context": {
-        "@alt_base": "https://wcrp-cmip.github.io/WCRP-constants/archive_id/",
-        "@base": "https://constants.mipcvs.dev/archive_id/",
-        "@esgvoc": "ArchiveId",
-        "@vocab": "https://constants.mipcvs.dev/docs/contents/ArchiveId/"
-    }
-}
