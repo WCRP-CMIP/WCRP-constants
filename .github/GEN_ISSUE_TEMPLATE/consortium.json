@@ -1,1 +1,0 @@
-{"name": "Add/Modify: Consortium", "description": "Add or modify a consortium in WCRP Universe", "title": "Add/Modify: Consortium", "labels": ["consortium"], "folder_tag": "organisation", "types": ["wcrp:organisation", "wcrp:consortium"], "issue_category": "consortium"}

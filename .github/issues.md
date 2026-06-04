@@ -4,23 +4,12 @@
 
 The following forms are available for this repository, and can be used to add or modify entries. The complete submission pipeline (if applicable) will be outlined in the section above.
 
-### Organisation & Consortium
-
-- [organisation](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=organisation.yml)
-- [consortium](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=consortium.yml)
 ### Core CVs
 
-- [activity](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=activity.yml)
 - [frequency](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=frequency.yml)
-- [license](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=license.yml)
-- [mip](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=mip.yml)
-- [product](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=product.yml)
 - [realm](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=realm.yml)
 - [resolution](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=resolution.yml)
 - [source_type](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=source_type.yml)
-### Archive & Data
-
-- [archive_id](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=archive_id.yml)
 ### Model Structure
 
 - [model_calendar](https://github.com/WCRP-CMIP/WCRP-constants/issues/new?template=model_calendar.yml)
