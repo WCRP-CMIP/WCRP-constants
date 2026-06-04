@@ -1,0 +1,54 @@
+name: ✓ PR merged — close issue and delete branch
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  issues: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  close-and-clean:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN:  ${{ secrets.CMIP_IPO_BOT_TOKEN || github.token }}
+      REPO:      ${{ github.repository }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      PR_TITLE:  ${{ github.event.pull_request.title }}
+      PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+      PR_BODY:   ${{ github.event.pull_request.body }}
+
+    steps:
+      - name: Close linked issue and delete branch
+        run: |
+          echo "## PR #${PR_NUMBER} merged" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Item | Result |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|------|--------|" >> "$GITHUB_STEP_SUMMARY"
+
+          # ── Find linked issue number from PR body ─────────────────────────
+          # Matches: Closes #N, Fixes #N, Resolves #N (case-insensitive)
+          ISSUE_NUMBER=$(echo "$PR_BODY" | grep -ioP '(?i)(closes|fixes|resolves)\s+#\K[0-9]+' | head -1)
+
+          if [ -z "$ISSUE_NUMBER" ]; then
+            echo "| Issue | no linked issue found in PR body |" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Closing issue #${ISSUE_NUMBER}..."
+            gh issue close "$ISSUE_NUMBER" --repo "$REPO" \
+              --comment "✅ Resolved by PR #${PR_NUMBER} (_${PR_TITLE}_). Merged and closed automatically." \
+              && echo "| Issue #${ISSUE_NUMBER} | closed ✅ |" >> "$GITHUB_STEP_SUMMARY" \
+              || echo "| Issue #${ISSUE_NUMBER} | failed to close ⚠️ |" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          # ── Delete the PR branch ──────────────────────────────────────────
+          # Skip protected branches (main, src-data)
+          if [[ "$PR_BRANCH" == "main" || "$PR_BRANCH" == "src-data" || "$PR_BRANCH" == "develop" ]]; then
+            echo "| Branch \`${PR_BRANCH}\` | protected — not deleted |" >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh api -X DELETE "repos/${REPO}/git/refs/heads/${PR_BRANCH}" \
+              && echo "| Branch \`${PR_BRANCH}\` | deleted 🗑️ |" >> "$GITHUB_STEP_SUMMARY" \
+              || echo "| Branch \`${PR_BRANCH}\` | already deleted or failed ⚠️ |" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        shell: bash

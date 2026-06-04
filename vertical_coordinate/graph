@@ -18,6 +18,7 @@
     {"@id": "atmosphere-hybrid-height-coordinate"},
     {"@id": "atmosphere-hybrid-sigma-pressure-coordinate"},
     {"@id": "sea-water-potential-temperature"},
+    {"@id": "ocean-hybrid-pressure-isopycnic-coordinate"},
     {"@id": "geopotential-height"},
     {"@id": "land-ice-sigma-coordinate"},
     {"@id": "depth"},
