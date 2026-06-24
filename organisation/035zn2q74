@@ -1,5 +1,5 @@
 {
-    "validation_key": "PMAS-AAUR",
+    "validation_key": "UAAR",
     "ui_label": "Pir Mehr Ali Shah Arid Agriculture University",
     "description": "",
     "acronyms": [
@@ -41,5 +41,5 @@
         "universal",
         "constants"
     ],
-    "@id": "pmas-aaur"
+    "@id": "uaar"
 }

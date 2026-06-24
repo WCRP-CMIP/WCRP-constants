@@ -9,14 +9,14 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "limited-area"},
-    {"@id": "30s-90s"},
-    {"@id": "tropics"},
     {"@id": "antarctica"},
+    {"@id": "southern-hemisphere"},
     {"@id": "greenland"},
-    {"@id": "arctic"},
     {"@id": "northern-hemisphere"},
     {"@id": "global"},
-    {"@id": "southern-hemisphere"}
+    {"@id": "arctic"},
+    {"@id": "30s-90s"},
+    {"@id": "tropics"},
+    {"@id": "limited-area"}
   ]
 }

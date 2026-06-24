@@ -9,14 +9,14 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "tai"},
+    {"@id": "standard"},
+    {"@id": "366day"},
+    {"@id": "utc"},
     {"@id": "none"},
     {"@id": "julian"},
-    {"@id": "360day"},
-    {"@id": "366day"},
-    {"@id": "standard"},
     {"@id": "365day"},
-    {"@id": "utc"},
-    {"@id": "proleptic-gregorian"}
+    {"@id": "360day"},
+    {"@id": "proleptic-gregorian"},
+    {"@id": "tai"}
   ]
 }

@@ -10,9 +10,9 @@
   ],
   "contents": [
     {"@id": "degree"},
-    {"@id": "km"},
-    {"@id": "pa"},
     {"@id": "k"},
-    {"@id": "meter"}
+    {"@id": "km"},
+    {"@id": "meter"},
+    {"@id": "pa"}
   ]
 }
