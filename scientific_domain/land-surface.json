@@ -1,5 +1,5 @@
 {
-    "validation_key": "land_surface",
+    "validation_key": "land-surface",
     "ui_label": "Land Surface and Subsurface",
     "description": "Land Surface and Subsurface",
     "alias": [
