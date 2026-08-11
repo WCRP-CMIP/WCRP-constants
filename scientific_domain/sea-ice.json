@@ -1,5 +1,5 @@
 {
-    "validation_key": "sea_ice",
+    "validation_key": "sea-ice",
     "ui_label": "Sea Ice",
     "description": "Sea Ice",
     "alias": [

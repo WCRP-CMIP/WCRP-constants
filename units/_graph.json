@@ -9,10 +9,10 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "degree"},
-    {"@id": "k"},
-    {"@id": "km"},
     {"@id": "meter"},
-    {"@id": "pa"}
+    {"@id": "degree"},
+    {"@id": "pa"},
+    {"@id": "km"},
+    {"@id": "k"}
   ]
 }

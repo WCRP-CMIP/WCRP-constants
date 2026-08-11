@@ -1,5 +1,5 @@
 {
-    "validation_key": "CSIRO",
+    "validation_key": "CSIR-Wits-CSIRO",
     "ui_label": "Commonwealth Scientific and Industrial Research Organisation",
     "description": "",
     "acronyms": [
@@ -38,5 +38,5 @@
         "universal",
         "constants"
     ],
-    "@id": "csiro"
+    "@id": "csir-wits-csiro"
 }
