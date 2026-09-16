@@ -1,6 +1,6 @@
 {
     "validation_key": "discrete-lines",
-    "ui_label": "Discrete lines",
+    "ui_label": "Discrete Lines",
     "description": "A grid of multiple unconnected lines, where each line is a single cell.",
     "@context": "_context",
     "@type": [
