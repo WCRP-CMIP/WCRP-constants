@@ -1,5 +1,5 @@
 {
-    "validation_key": "IAP",
+    "validation_key": "CAS",
     "ui_label": "Institute of Atmospheric Physics",
     "description": "",
     "acronyms": [
@@ -40,5 +40,5 @@
         "universal",
         "constants"
     ],
-    "@id": "iap"
+    "@id": "cas"
 }

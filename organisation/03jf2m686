@@ -1,5 +1,5 @@
 {
-    "validation_key": "CCCR-IITM",
+    "validation_key": "IITM",
     "ui_label": "Indian Institute of Tropical Meteorology",
     "description": "",
     "acronyms": [
@@ -39,5 +39,5 @@
         "universal",
         "constants"
     ],
-    "@id": "cccr-iitm"
+    "@id": "iitm"
 }

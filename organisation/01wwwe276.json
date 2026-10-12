@@ -1,5 +1,5 @@
 {
-    "validation_key": "NCAR",
+    "validation_key": "NCAS",
     "ui_label": "National Centre for Atmospheric Science",
     "description": "",
     "acronyms": [
@@ -38,5 +38,5 @@
         "universal",
         "constants"
     ],
-    "@id": "ncar"
+    "@id": "ncas"
 }

@@ -9,9 +9,9 @@
     "Collection"
   ],
   "contents": [
-    {"@id": "y-velocity"},
     {"@id": "mass"},
     {"@id": "velocity"},
-    {"@id": "x-velocity"}
+    {"@id": "x-velocity"},
+    {"@id": "y-velocity"}
   ]
 }

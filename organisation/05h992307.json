@@ -1,5 +1,5 @@
 {
-    "validation_key": "PNNL-WACCEM",
+    "validation_key": "PNNL",
     "ui_label": "Pacific Northwest National Laboratory",
     "description": "",
     "acronyms": [
@@ -41,5 +41,5 @@
         "universal",
         "constants"
     ],
-    "@id": "pnnl-waccem"
+    "@id": "pnnl"
 }
